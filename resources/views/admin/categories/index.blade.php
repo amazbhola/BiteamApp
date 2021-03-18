@@ -20,36 +20,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($categories as $item)
                         <tr>
-                            <td>1</td>
-                            <td>Internet
-                                Explorer 4.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td> 4</td>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->created_at }}</td>
+                            <td> {{ $item->updated_at }}</td>
                             <td><a href="" class="btn btn-outline-success btn-sm">Edit</a></td>
                             <td><a href="" class="btn btn-outline-danger btn-sm">Delete</a></td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Internet
-                                Explorer 4.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td> 4</td>
-                            <td><a href="" class="btn btn-outline-success btn-sm">Edit</a></td>
-                            <td><a href="" class="btn btn-outline-danger btn-sm">Delete</a></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Internet
-                                Explorer 4.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td> 4</td>
-                            <td><a href="" class="btn btn-outline-success btn-sm">Edit</a></td>
-                            <td><a href="" class="btn btn-outline-danger btn-sm">Delete</a></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                     <tfoot>
                         <tr>

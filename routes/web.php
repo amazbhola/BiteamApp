@@ -21,9 +21,12 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('admin')->group(function(){
     Route::get('/',[DashboardController::class,'index'])->name('index')->name('dashboard.index');
     // categories routes----------------------------------------------------
-    // Urs GET Routs
+    // Url GET Routs
     Route::get('/categories',[AdminCategoriesController::class,'index'])->name('categories.index');
     Route::get('/categories/create',[AdminCategoriesController::class,'create'])->name('categories.create');
+    // Route::get('/categories/edit/{id}',[AdminCategoriesController::class,'edit'])->name('categories.edit');
+    // Post Route. 
+    Route::post('/categories/store',[AdminCategoriesController::class,'store'])->name('categories.store');
     // Route::get('/categories/edit',[AdminCategoriesController::class,'edit'])->name('categories.edit');
     // Products Routes -----------------------------------------------------
     // Route::get('/products',[AdminCategoriesController::class,'index']);
