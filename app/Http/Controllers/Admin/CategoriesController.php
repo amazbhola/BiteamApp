@@ -37,10 +37,15 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+     try{
         Categories::create([
             'name' => $request->name
         ]);
-        return redirect(route('categories.create'))->with('status','Category Name Saved');
+        // return redirect(route('categories.create'))->with('status','Category Name Saved');
+        return redirect()->back()->with('status','Category Name Saved');
+     }catch(\Exception $e){
+            echo $e->getMessage();
+     }
         
     }
 
@@ -63,7 +68,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.categories.edit');
+        $editById = Categories::findOrFail($id);
+        return view('admin.categories.edit',compact('editById'));
     }
 
     /**
@@ -75,7 +81,8 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        return redirect(route('categories.index'))->with('status', 'Category Data Update!');
     }
 
     /**

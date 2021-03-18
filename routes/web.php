@@ -24,10 +24,10 @@ Route::prefix('admin')->group(function(){
     // Url GET Routs
     Route::get('/categories',[AdminCategoriesController::class,'index'])->name('categories.index');
     Route::get('/categories/create',[AdminCategoriesController::class,'create'])->name('categories.create');
-    // Route::get('/categories/edit/{id}',[AdminCategoriesController::class,'edit'])->name('categories.edit');
+    Route::get('/categories/edit/{id}',[AdminCategoriesController::class,'edit'])->name('categories.edit');
     // Post Route. 
     Route::post('/categories/store',[AdminCategoriesController::class,'store'])->name('categories.store');
-    // Route::get('/categories/edit',[AdminCategoriesController::class,'edit'])->name('categories.edit');
+    // Route::post('/categories/edit',[AdminCategoriesController::class,'update'])->name('categories.update');
     // Products Routes -----------------------------------------------------
     // Route::get('/products',[AdminCategoriesController::class,'index']);
     // Route::get('/products/create',[AdminCategoriesController::class,'create']);

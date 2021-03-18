@@ -1,3 +1,4 @@
+@extends('admin.layouts.master')
 @section('page-content')
    <div class="container">
        <div class="row">
@@ -9,11 +10,11 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form method="POST" action="">
                 <div class="card-body">
                   <div class="form-group">
                     <label>Category Name</label>
-                    <input type="text" class="form-control" placeholder="" value="">
+                    <input type="text" class="form-control" placeholder="" value="{{ $editById->name }}">
                   </div>
                 </div>
                 <!-- /.card-body -->
@@ -26,10 +27,6 @@
             <!-- /.card -->
 
             <!-- /.card -->
-
-            
-        
-            
 
           </div>
        </div>

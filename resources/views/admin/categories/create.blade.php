@@ -11,7 +11,7 @@
               <!-- /.card-header -->
               <!-- form start -->
               @if (session()->has('status'))
-                <div class="alert alert-default-primary">
+                <div class="alert alert-default-success">
                     {{ session()->get('status') }}
                 </div>
               @endif
