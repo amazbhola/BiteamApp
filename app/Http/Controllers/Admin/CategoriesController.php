@@ -7,6 +7,7 @@ use App\Models\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Log\Logger;
 
+
 class CategoriesController extends Controller
 {
     /**
@@ -38,9 +39,12 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'=>'required'
+        ]);
      try{
         Categories::create([
-            'names' => $request->name
+            'name' => $request->name
         ]);
         // return redirect(route('categories.create'))->with('status','Category Name Saved');
         return redirect()->back()->with('status','Category Name Saved');

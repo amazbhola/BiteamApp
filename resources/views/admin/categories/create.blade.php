@@ -26,6 +26,9 @@
                   <div class="form-group">
                     <label>Category Name</label>
                     <input type="text" name="name" class="form-control" placeholder="Category Name">
+                    @error('name')
+                        <p class="text-danger">{{ $message  }}</p>
+                    @enderror
                   </div>
                 </div>
                 <!-- /.card-body -->
