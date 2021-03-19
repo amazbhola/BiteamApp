@@ -27,7 +27,13 @@
                             <td>{{ $item->created_at }}</td>
                             <td> {{ $item->updated_at }}</td>
                             <td><a href="{{ route('categories.edit',$item->id) }}" class="btn btn-outline-success btn-sm">Edit</a></td>
-                            <td><a href="" class="btn btn-outline-danger btn-sm">Delete</a></td>
+                            <td>
+                                <form action="{{ route('categories.destroy',$item->id) }}" method="POST">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

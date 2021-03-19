@@ -6,7 +6,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Create Category</h3>
+                <h3 class="card-title">Create Category | <span class="btn btn-outline-dark"><a href="{{ route('categories.index') }}">Categories List</a></span></h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->

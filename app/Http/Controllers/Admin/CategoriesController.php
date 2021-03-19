@@ -89,7 +89,9 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
- 
+        $request->validate([
+            'name'=>'required'
+        ]);
     try {
         $catecory = Categories::find($id);
         $catecory->name = $request->name;
@@ -112,6 +114,13 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $catecory = Categories::find($id);
+            $catecory->delete();
+            return redirect()->back()->with('success','Category deleted..');
+        } catch (\Exception $e) {
+            \Log::error( $e->getMessage());
+            return redirect()->back()->with('error','Something want wrong....');
+        }
     }
 }

@@ -6,7 +6,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Edit Category</h3>
+                <h3 class="card-title">Edit Category | <span class="btn btn-outline-dark"><a href="{{ route('categories.index') }}">Categories List</a></span></h3>
               </div>
               <!-- /.card-header -->
               @if (session()->has('success'))
@@ -27,12 +27,15 @@
                   <div class="form-group">
                     <label>Category Name</label>
                     <input type="text" name="name" class="form-control" placeholder="" value="{{ $editById->name }}">
+                    @error('name')
+                    <p class="text-danger">{{ $message  }}</p>
+                    @enderror
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                 </div>
               </form>
             </div>

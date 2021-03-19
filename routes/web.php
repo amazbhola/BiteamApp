@@ -25,9 +25,10 @@ Route::prefix('admin')->group(function(){
     Route::get('/categories',[AdminCategoriesController::class,'index'])->name('categories.index');
     Route::get('/categories/create',[AdminCategoriesController::class,'create'])->name('categories.create');
     Route::get('/categories/{id}/edit',[AdminCategoriesController::class,'edit'])->name('categories.edit');
-    // Post Route. 
+    // Post/updaate/delete Route. 
     Route::post('/categories/store',[AdminCategoriesController::class,'store'])->name('categories.store');
     Route::PUT('/categories/{id}/update',[AdminCategoriesController::class,'update'])->name('categories.update');
+    Route::delete('/categories/{id}/destroy',[AdminCategoriesController::class,'destroy'])->name('categories.destroy');
     // Products Routes -----------------------------------------------------
     // Route::get('/products',[AdminCategoriesController::class,'index']);
     // Route::get('/products/create',[AdminCategoriesController::class,'create']);
