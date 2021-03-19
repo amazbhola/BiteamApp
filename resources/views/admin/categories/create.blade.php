@@ -11,8 +11,13 @@
               <!-- /.card-header -->
               <!-- form start -->
               @if (session()->has('status'))
-                <div class="alert alert-default-success">
+                <div class="alert text-success">
                     {{ session()->get('status') }}
+                </div>
+              @endif
+              @if (session()->has('error'))
+                <div class="alert text-danger">
+                    {{ session()->get('error') }}
                 </div>
               @endif
               <form action="{{ route('categories.store') }}" method="POST">

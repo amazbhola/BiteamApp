@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
 use Illuminate\Http\Request;
+use Illuminate\Log\Logger;
 
 class CategoriesController extends Controller
 {
@@ -39,12 +40,14 @@ class CategoriesController extends Controller
     {
      try{
         Categories::create([
-            'name' => $request->name
+            'names' => $request->name
         ]);
         // return redirect(route('categories.create'))->with('status','Category Name Saved');
         return redirect()->back()->with('status','Category Name Saved');
      }catch(\Exception $e){
-            echo $e->getMessage();
+            \Log::error($e->getMessage());
+           
+            return redirect()->back()->with('error','Something want wrong....');
      }
         
     }
@@ -68,8 +71,12 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $editById = Categories::findOrFail($id);
+        try {
+            $editById = Categories::find($id);
         return view('admin.categories.edit',compact('editById'));
+        } catch (\Exception $th) {
+            echo $th->getMessage();
+        }
     }
 
     /**
@@ -81,8 +88,13 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        return redirect(route('categories.index'))->with('status', 'Category Data Update!');
+       try {
+        // return redirect(route('categories.index'))->with('status', 'Category Data Update!');
+        return redirect()->route('categories.index')->with('status', 'Category Data Update!');
+       } catch (\Exception $th) {
+            echo $th->getMessage();
+       } 
+       
     }
 
     /**
