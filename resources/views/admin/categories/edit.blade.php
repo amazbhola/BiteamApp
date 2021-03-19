@@ -9,12 +9,24 @@
                 <h3 class="card-title">Edit Category</h3>
               </div>
               <!-- /.card-header -->
+              @if (session()->has('success'))
+              <div class="alert text-success">
+                  {{ session()->get('success') }}
+              </div>
+            @endif
+            @if (session()->has('error'))
+              <div class="alert text-danger">
+                  {{ session()->get('error') }}
+              </div>
+            @endif
               <!-- form start -->
-              <form method="POST" action="">
+              <form method="POST" action="{{ route('categories.update',$editById->id) }}">
+                @method('PUT')
+                @csrf
                 <div class="card-body">
                   <div class="form-group">
                     <label>Category Name</label>
-                    <input type="text" class="form-control" placeholder="" value="{{ $editById->name }}">
+                    <input type="text" name="name" class="form-control" placeholder="" value="{{ $editById->name }}">
                   </div>
                 </div>
                 <!-- /.card-body -->

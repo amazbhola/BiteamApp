@@ -75,12 +75,9 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        try {
             $editById = Categories::find($id);
-        return view('admin.categories.edit',compact('editById'));
-        } catch (\Exception $th) {
-            echo $th->getMessage();
-        }
+            return view('admin.categories.edit',compact('editById'));
+       
     }
 
     /**
@@ -92,12 +89,18 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-       try {
-        // return redirect(route('categories.index'))->with('status', 'Category Data Update!');
-        return redirect()->route('categories.index')->with('status', 'Category Data Update!');
-       } catch (\Exception $th) {
-            echo $th->getMessage();
-       } 
+ 
+    try {
+        $catecory = Categories::find($id);
+        $catecory->name = $request->name;
+        $catecory->update();
+        return redirect()->back()->with('success','Category updated..');
+    } catch (\Exception $e) {
+        \Log::error( $e->getMessage());
+        return redirect()->back()->with('error','Something want wrong....');
+    }
+        
+       
        
     }
 
