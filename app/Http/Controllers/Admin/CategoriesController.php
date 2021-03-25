@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
 use Illuminate\Http\Request;
-use Illuminate\Log\Logger;
+use Illuminate\Support\Facades\Log;
+
 
 
 class CategoriesController extends Controller
@@ -49,7 +50,7 @@ class CategoriesController extends Controller
         // return redirect(route('categories.create'))->with('status','Category Name Saved');
         return redirect()->back()->with('status','Category Name Saved');
      }catch(\Exception $e){
-            \Log::error($e->getMessage());
+            Log::error($e->getMessage());
            
             return redirect()->back()->with('error','Something want wrong....');
      }
@@ -98,7 +99,7 @@ class CategoriesController extends Controller
         $catecory->update();
         return redirect()->back()->with('success','Category updated..');
     } catch (\Exception $e) {
-        \Log::error( $e->getMessage());
+        Log::error( $e->getMessage());
         return redirect()->back()->with('error','Something want wrong....');
     }
         
@@ -119,7 +120,7 @@ class CategoriesController extends Controller
             $catecory->delete();
             return redirect()->back()->with('success','Category deleted..');
         } catch (\Exception $e) {
-            \Log::error( $e->getMessage());
+            Log::error( $e->getMessage());
             return redirect()->back()->with('error','Something want wrong....');
         }
     }

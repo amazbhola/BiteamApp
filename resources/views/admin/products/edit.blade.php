@@ -10,7 +10,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              @if (session()->has('status'))
+              @if (session()->has('success'))
                 <div class="alert text-success">
                     {{ session()->get('success') }}
                 </div>
@@ -21,7 +21,8 @@
                 </div>
               @endif
           
-              <form action="" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('products.update', $product->id )}}" method="POST" enctype="multipart/form-data">
+                @method('PUT')
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
