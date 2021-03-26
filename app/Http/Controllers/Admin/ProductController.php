@@ -123,6 +123,7 @@ class ProductController extends Controller
                 $product->name = $request->name;
                 $product->description = $request->description;
                 $product->category_id = $request->category_id;
+                $product->is_active = $request->is_active;
                 $product->price = $request->price;
                 $product->quantity = $request->quantity;
                 $product->slug = Str::slug( $request->name);
