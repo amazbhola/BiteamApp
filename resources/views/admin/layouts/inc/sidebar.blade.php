@@ -119,21 +119,13 @@
                         <p>
                             Brand
                             <i class="fas fa-angle-left right"></i>
-                            
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-
                         <li class="nav-item">
                             <a href="{{ route('brands.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Manage Brands</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('brands.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Create Brand</p>
                             </a>
                         </li>
                     </ul>

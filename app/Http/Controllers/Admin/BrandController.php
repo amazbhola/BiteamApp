@@ -28,7 +28,7 @@ class BrandController extends Controller
      */
     public function create()
     {
-        return view('admin.brand.create');
+        //
     }
 
     /**
@@ -45,8 +45,8 @@ class BrandController extends Controller
         
         try {
             $imagename = $request->name.'.'.$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->storeAs('public/uploads',$imagename) ;
-            $imageDbPath = 'storage/uploads/'.$imagename;
+            $request->file('image')->storeAs('public/uploads/brand',$imagename) ;
+            $imageDbPath = 'storage/uploads/brand/'.$imagename;
 
             Brand::create([
                 'name' => $request->name,
@@ -94,14 +94,14 @@ class BrandController extends Controller
         
         $request->validate([
             'name' => 'required',
-            'image' => 'file|max:512'
+            'image' => 'image|max:512'
 
         ]);
         try {
             if ($request->hasFile('image')) {
                 $imagename = $request->name.'.'.$request->file('image')->getClientOriginalExtension();
-                $request->file('image')->storeAs('public/uploads',$imagename) ;
-                $imageDbPath = 'storage/uploads/'.$imagename;
+                $request->file('image')->storeAs('public/uploads/brand',$imagename) ;
+                $imageDbPath = 'storage/uploads/brand/'.$imagename;
                 Storage::delete($brand->image);
             }
 
@@ -125,6 +125,13 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        
+        try {
+            $brand->delete();
+            return redirect()->back()->with('success','Destroy this Brand');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error','Not Destroy this Brand');
+        }
     }
 }

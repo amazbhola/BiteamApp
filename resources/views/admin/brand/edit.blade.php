@@ -20,7 +20,7 @@
               </div>
             @endif
               <!-- form start -->
-              <form method="POST" action="{{ route('brands.update',$brand->id) }}">
+              <form method="POST" action="{{ route('brands.update',$brand->id) }}" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="card-body">
