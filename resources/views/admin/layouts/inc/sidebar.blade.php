@@ -81,12 +81,6 @@
                                 <p>Manage Categories</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('categories.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Create Category</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -103,12 +97,6 @@
                             <a href="{{ route('products.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Manage Products</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('products.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Create Products</p>
                             </a>
                         </li>
                     </ul>

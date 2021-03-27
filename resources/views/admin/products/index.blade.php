@@ -4,6 +4,99 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Product List</h3>
+                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addProduct">
+                    Add New Product
+                </button>
+                <div class="modal fade bd-example-modal-lg" id="addProduct" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Add New Product</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>Product Name</label>
+                                            <input type="text" name="name" class="form-control" placeholder="Product Name">
+                                            @error('name')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="row sm">
+                                            <div class="form-group col-6">
+                                                <label>Product price</label>
+                                                <input type="text" name="price" class="form-control"
+                                                    placeholder="Product Price">
+                                                @error('price')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label for="category_select">Product Category</label>
+                                                <select id="category_select" class="form-control" name="category_id">
+                                                    <option value="">Select Cacegory</option>
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{ $category->id }}">{{ $category->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('category_id')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <label>Product Quantity</label>
+                                                <input type="text" name="quantity" class="form-control"
+                                                    placeholder="Product Quantity">
+                                                @error('quantity')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label>Product Status</label>
+                                                <select name="is_active" id="" class="form-control">
+                                                    <option value="0">Inactive</option>
+                                                    <option value="1">Active</option>
+                                                </select>
+                                                @error('is_active')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Product Image</label>
+                                            <input type="file" name="image" class="form-control-sm">
+                                            @error('image')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Product Description</label>
+                                            <textarea class="form-control" name="description" id="" cols="10"
+                                                rows="10"></textarea>
+                                            @error('description')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save Product</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
             @if (session()->has('success'))
                 <div class="alert text-success">
@@ -41,30 +134,127 @@
                                 <td>{{ $item->slug }}</td>
                                 <td>{{ $item->price }}</td>
                                 <td>{{ $item->is_active }}</td>
-                                <td><a href="{{ route('products.edit', $item->id) }}"
-                                        class="btn btn-outline-success btn-sm">Edit</a></td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal" data-target="#editproduct{{ $item->id }}">
+                                            Edit
+                                        </button>
+                                        <div class="modal fade bd-example-modal-lg" id="editproduct{{ $item->id }}" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalCenterTitle">Update Product</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ route('products.update', $item->id )}}" method="POST" enctype="multipart/form-data">
+                                                            @method('PUT')
+                                                            @csrf
+                                                            <div class="card-body">
+                                                              <div class="form-group">
+                                                                <label>Product Name</label>
+                                                                <input type="text" name="name" value="{{ $item->name }}" class="form-control" placeholder="Product Name">
+                                                                @error('name')
+                                                                    <p class="text-danger">{{ $message  }}</p>
+                                                                @enderror
+                                                              </div>
+                                                              <div class="row sm">
+                                                                <div class="form-group col-6">
+                                                                  <label>Product price</label>
+                                                                  <input type="text" name="price" value="{{ $item->price }}" class="form-control" placeholder="Product Price">
+                                                                  @error('price')
+                                                                      <p class="text-danger">{{ $message  }}</p>
+                                                                  @enderror
+                                                                </div>
+                                                                <div class="form-group col-6">
+                                                                    <label for="category_select">Product Category</label>
+                                                                    <select id="category_select" class="form-control" name="category_id">
+                                                                      <option value="">Select Cacegory</option>
+                                                                      @foreach ($categories as $category)
+                                                                      <option {{ $item->category_id == $category->id ? 'selected':''}} value="{{ $category->id }}">{{ $category->name }}</option>
+                                                                      @endforeach
+                                                                    </select>
+                                                                  @error('category_id')
+                                                                      <p class="text-danger">{{ $message}}</p>
+                                                                  @enderror
+                                                                </div>
+                                                              </div>
+                                                              <div class="row">
+                                                                <div class="form-group col-6">
+                                                                  <label>Product Quantity</label>
+                                                                  <input type="text" name="quantity" value="{{ $item->quantity }}" class="form-control" placeholder="Product Quantity">
+                                                                  @error('quantity')
+                                                                      <p class="text-danger">{{ $message  }}</p>
+                                                                  @enderror
+                                                                </div>
+                                                                <div class="form-group col-6">
+                                                                  <label>Product Status</label>
+                                                                  <select name="is_active" id="" class="form-control">
+                                                                    <option {{ $item->is_active == 0 ? 'selected' : ''}} value="0" >Inactive</option>
+                                                                    <option {{ $item->is_active == 1 ? 'selected' : ''}} value="1">Active</option>
+                                                                  </select>
+                                                                  @error('is_active')
+                                                                      <p class="text-danger">{{ $message  }}</p>
+                                                                  @enderror
+                                                                </div>
+                                                              </div>
+                                                              <div class="form-group">
+                                                                <label>Product Image</label>
+                                                                <input type="file" name="image" class="form-control-sm">
+                                                                <img width="80" src="{{ asset($item->image)}}" alt="">
+                                                                @error('image')
+                                                                    <p class="text-danger">{{ $message  }}</p>
+                                                                @enderror
+                                                              </div>
+                                                              <div class="form-group">
+                                                                <label>Product Description</label>
+                                                                <textarea class="form-control" name="description" id="" cols="10" rows="10">{{ $item->description}}</textarea>
+                                                                @error('description')
+                                                                    <p class="text-danger">{{ $message  }}</p>
+                                                                @enderror
+                                                              </div>
+                                                            </div>
+                                                            <!-- /.card-body -->
+                                                    </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit" class="btn btn-primary">Update Product</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                 <td>
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modelId{{ $item->id }}">
-                                      Delete
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                        data-target="#modelId{{ $item->id }}">
+                                        Delete
                                     </button>
-                                    
+
+
                                     <!-- Modal -->
-                                    <div class="modal fade" id="modelId{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                    <div class="modal fade" id="modelId{{ $item->id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="modelTitleId" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title">{{ $item->name }}</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                   <p class="text-danger"> Are you sure delete this Product ?</p>
+                                                    <p class="text-danger"> Are you sure delete this <strong>{{ $item->name }}</strong> Product ?</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <form action="{{ route('products.destroy',$item->id) }}" method="POST">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                    <form action="{{ route('products.destroy', $item->id) }}"
+                                                        method="POST">
                                                         @method('delete')
                                                         @csrf
                                                         <button type="submit" class="btn btn-danger">Delete</button>

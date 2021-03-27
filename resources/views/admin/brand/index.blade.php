@@ -77,8 +77,53 @@
                                 <td>{{ $item->id }}</td>
                                 <td><img width="60" src="{{ asset($item->image) }}" alt=""></td>
                                 <td>{{ $item->name }}</td>
-                                <td><a href="{{ route('brands.edit', $item->id) }}"
-                                        class="btn btn-outline-success btn-sm">Edit</a></td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm " data-toggle="modal" data-target="#editBrand{{ $item->id }}">
+                                       Edit
+                                    </button>
+                    
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="editBrand{{ $item->id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalScrollableTitle">Brand Create Form</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('brands.update', $item->id ) }}" method="POST" enctype="multipart/form-data">
+                                                        @method('PUT')
+                                                        @csrf
+                    
+                                                        <div class="form-group">
+                                                            <label>Brand Name</label>
+                                                            <input type="text" name="name" class="form-control" value="{{ $item->name }}" >
+                                                            @error('name')
+                                                                <p class="text-danger">{{ $message }}</p>
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="">Brand Image</label>
+                                                            <input type="file" class="form-control-file" name="image" id="" placeholder=""
+                                                                aria-describedby="fileHelpId">
+                                                                <img width="100" src="{{ asset($item->image) }}" alt="">
+                                                            @error('image')
+                                                                <p class="text-danger">{{ $message }}</p>
+                                                            @enderror
+                                                        </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Update Brand</button>
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
                                 <td>
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
@@ -99,7 +144,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p class="text-danger"> Are you sure delete this Brand ?</p>
+                                                    <p class="text-danger"> Are you sure delete this <strong>{{ $item->name }}</strong> Brand ?</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
