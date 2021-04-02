@@ -1,7 +1,6 @@
 import Vue from 'vue';
+import App from './App';
 
 new Vue({
-    data:{
-        massege:'Loading Vue in Laravel App'
-    }
+   render: h=>h(App)
 }).$mount('#vueApp');
