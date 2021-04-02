@@ -52,7 +52,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="form-group col-6">
+                                            <div class="form-group col-3">
                                                 <label>Product Quantity</label>
                                                 <input type="text" name="quantity" class="form-control"
                                                     placeholder="Product Quantity">
@@ -67,6 +67,19 @@
                                                     <option value="1">Active</option>
                                                 </select>
                                                 @error('is_active')
+                                                    <p class="text-danger">{{ $message }}</p>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group col-3">
+                                                <label>Product Brand</label>
+                                                <select id="category_select" class="form-control" name="brand_id">
+                                                    <option value="">Select Brand</option>
+                                                    @foreach ($brands as $brand)
+                                                        <option value="{{ $brand->id }}">{{ $brand->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                                @error('brand_id')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
@@ -130,10 +143,10 @@
                                 <td>{{ $item->id }}</td>
                                 <td><img width="60" src="{{ asset($item->image) }}" alt=""></td>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->category_id }}</td>
+                                <td>{{ $category->name }}</td>
                                 <td>{{ $item->slug }}</td>
                                 <td>{{ $item->price }}</td>
-                                <td>{{ $item->is_active }}</td>
+                                <td>{{ $item->is_active == 0 ? 'Inactive':'Active'}}</td>
                                     <td>
                                         <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal" data-target="#editproduct{{ $item->id }}">
                                             Edit
@@ -182,7 +195,7 @@
                                                                 </div>
                                                               </div>
                                                               <div class="row">
-                                                                <div class="form-group col-6">
+                                                                <div class="form-group col-3">
                                                                   <label>Product Quantity</label>
                                                                   <input type="text" name="quantity" value="{{ $item->quantity }}" class="form-control" placeholder="Product Quantity">
                                                                   @error('quantity')
@@ -198,6 +211,19 @@
                                                                   @error('is_active')
                                                                       <p class="text-danger">{{ $message  }}</p>
                                                                   @enderror
+                                                                </div>
+                                                                <div class="form-group col-3">
+                                                                    <label>Product Brand</label>
+                                                                    <select id="category_select" class="form-control" name="brand_id">
+                                                                        <option value="">Select Brand</option>
+                                                                        @foreach ($brands as $brand)
+                                                                            <option {{ $item->brand_id == $brand->id ? 'selected':''}} value="{{ $brand->id }}">{{ $brand->name }}
+                                                                            </option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('brand_id')
+                                                                        <p class="text-danger">{{ $message }}</p>
+                                                                    @enderror
                                                                 </div>
                                                               </div>
                                                               <div class="form-group">

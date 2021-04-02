@@ -19,8 +19,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
+});
+Route::get('/product_details/{slug}', function () {
+    return view('frontend.layouts.product_details');
 });
 
 Route::prefix('admin')->middleware(['auth:sanctum', 'verified'])->group(function(){

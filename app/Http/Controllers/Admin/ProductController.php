@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Categories;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Log;
@@ -19,9 +20,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::with('brand','category')->get();
         $categories = Categories::all();
-        return view('admin.products.index',compact('products','categories'));
+        $brands = Brand::all();
+        return view('admin.products.index',compact('products','categories','brands'));
     }
 
     /**
@@ -60,6 +62,7 @@ class ProductController extends Controller
                 'name' => $request->name,
                 'description' => $request->description,
                 'category_id' => $request->category_id,
+                'brand_id' => $request->brand_id,
                 'price' => $request->price,
                 'quantity' => $request->quantity,
                 'is_active' => $request->is_active,
@@ -124,6 +127,7 @@ class ProductController extends Controller
                 $product->name = $request->name;
                 $product->description = $request->description;
                 $product->category_id = $request->category_id;
+                $product->brand_id = $request->brand_id;
                 $product->is_active = $request->is_active;
                 $product->price = $request->price;
                 $product->quantity = $request->quantity;
