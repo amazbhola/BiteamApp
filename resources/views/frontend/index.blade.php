@@ -4,5 +4,8 @@
 @endsection
 
 @section('featured-product')
-    @include('frontend.layouts.featured-product')
+    <div id="vueApp">
+        <h2 v-text='massege'></h2>
+    </div>
 @endsection
+

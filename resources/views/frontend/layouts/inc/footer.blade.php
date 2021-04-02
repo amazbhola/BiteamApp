@@ -85,6 +85,7 @@ Footer
         <script src="{{ asset('assets/frontend/js/jquery.easing-1.3.min.js') }}"></script>
         <script src="{{ asset('assets/frontend/js/jquery.scrollTo-1.4.3.1-min.js') }}"></script>
         <script src="{{ asset('assets/frontend/js/shop.js') }}"></script>
+        <script src="{{ mix('js/vue-app/main.js') }}"></script>
       </body>
     </html>
 

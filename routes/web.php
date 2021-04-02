@@ -25,9 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('frontend.index');
 });
-Route::get('/product_details/{slug}', function () {
-    return view('frontend.layouts.product_details');
-});
+
 
 Route::prefix('admin')->middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::resource('/', DashboardController::class);
