@@ -1,7 +1,6 @@
 <template>
     <div>
         <footer-components></footer-components>
-        
         <copy-components></copy-components> 
     </div>
 </template>

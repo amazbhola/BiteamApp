@@ -1,19 +1,20 @@
 <template>
     <div class="container">
-        <app-header></app-header>
-        <home-page></home-page>
-        <app-footer></app-footer>
+        <div class="row">
+            <app-header></app-header>
+            <app-sidebar></app-sidebar>
+            <router-view></router-view>
+            <app-footer></app-footer>
+        </div>
     </div>
 </template>
 <script>
+import AppHeader from "./components/Header";
+import AppFooter from "./components/Footer";
+import AppSidebar from "./components/SidebarComponents";
 
-import AppHeader from './components/Header';
-import AppFooter from './components/Footer';
-import HomePage from './pages/Homepage';
 export default {
-    components:{AppHeader,AppFooter,HomePage}
-}
+    components: { AppHeader, AppFooter, AppSidebar }
+};
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>
