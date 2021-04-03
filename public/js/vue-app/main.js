@@ -342,7 +342,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      products: [{
+      products: []
+    };
+  },
+  created: function created() {
+    this.products = this.dbProductData();
+  },
+  methods: {
+    dbProductData: function dbProductData() {
+      var dbproduct = [{
         name: 'Samsung',
         slug: 'Samsung',
         price: 1000,
@@ -366,8 +374,9 @@ __webpack_require__.r(__webpack_exports__);
         price: 1000,
         image: 'https://picsum.photos/200/200',
         description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident eum doloremque quos quidem in odio quisquam molestiae? Asperiores, officiis laudantium illum reiciendis quo sed quibusdam non! Quisquam harum cum nisi!'
-      }]
-    };
+      }];
+      return dbproduct;
+    }
   }
 });
 
@@ -2273,15 +2282,24 @@ var render = function() {
     _vm._v(" "),
     _c("header", { attrs: { id: "header" } }, [
       _c("div", { staticClass: "row" }, [
-        _vm._m(0),
+        _c(
+          "div",
+          { staticClass: "span4" },
+          [
+            _c("router-link", { attrs: { to: { name: "home-page" } } }, [
+              _c("img", { attrs: { src: "https://picsum.photos/50/50" } })
+            ])
+          ],
+          1
+        ),
         _vm._v(" "),
-        _vm._m(1),
+        _vm._m(0),
         _vm._v(" "),
         _c(
           "div",
           { staticClass: "span4 alignR" },
           [
-            _vm._m(2),
+            _vm._m(1),
             _vm._v(" "),
             _c("router-link", { attrs: { to: { name: "chackout-page" } } }, [
               _c("span", { staticClass: "btn btn-mini" }, [
@@ -2305,20 +2323,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "span4" }, [
-      _c("h1", [
-        _c("a", { staticClass: "logo", attrs: { href: "index.html" } }, [
-          _c("span", [_vm._v("Twitter Bootstrap ecommerce template")]),
-          _vm._v(" "),
-          _c("img", { attrs: { src: "https://picsum.photos/50/50" } })
-        ])
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

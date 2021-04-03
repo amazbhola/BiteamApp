@@ -15,7 +15,16 @@ export default {
     components:{ProductOne},
     data(){
     return {
-        products:[
+        products:[]
+    }
+    },
+    created() {
+        
+        this.products= this.dbProductData();
+    },
+    methods:{
+        dbProductData(){
+            const dbproduct = [
             {
                 name :'Samsung',
                 slug :'Samsung',
@@ -44,8 +53,9 @@ export default {
                 image:'https://picsum.photos/200/200',
                 description:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident eum doloremque quos quidem in odio quisquam molestiae? Asperiores, officiis laudantium illum reiciendis quo sed quibusdam non! Quisquam harum cum nisi!'
             }
-        ]
+        ];
+        return dbproduct;
+        }
     }
-}
 }
 </script>

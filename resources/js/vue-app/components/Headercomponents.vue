@@ -4,12 +4,9 @@
         <header id="header">
             <div class="row">
                 <div class="span4">
-                    <h1>
-                        <a class="logo" href="index.html"><span>Twitter Bootstrap ecommerce template</span>
-                            <img src="https://picsum.photos/50/50"
-                                >
-                        </a>
-                    </h1>
+                        <router-link :to="{name: 'home-page'}">
+                            <img src="https://picsum.photos/50/50"/>
+                        </router-link>
                 </div>
                 <div class="span4">
                     <div class="offerNoteWrapper">
