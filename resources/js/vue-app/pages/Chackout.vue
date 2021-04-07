@@ -1,6 +1,8 @@
 <template>
     <div>
-        <div class="well well-small">
+         <div class="span9">
+             <div style="margin-right: -40px; margin-left: 15px;" class="singlepage">
+                  <div class="well well-small">
             <h1>Check Out <small class="pull-right"> 2 Items are in the cart </small></h1>
             <hr class="soften" />
 
@@ -54,18 +56,7 @@
                         <td colspan="6" class="alignR">Total products: </td>
                         <td> $448.42</td>
                     </tr>
-                    <tr>
-                        <td colspan="6" class="alignR">Total products: </td>
-                        <td> $448.42</td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="alignR">Total products: </td>
-                        <td> $448.42</td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="alignR">Total products: </td>
-                        <td class="label label-primary"> $448.42</td>
-                    </tr>
+               
                 </tbody>
             </table><br />
 
@@ -119,6 +110,8 @@
             <a href="login.html" class="shopBtn btn-large pull-right">Next <span class="icon-arrow-right"></span></a>
 
         </div>    
+             </div>
+         </div>
     </div>
 </template>
 <script>

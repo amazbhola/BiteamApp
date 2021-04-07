@@ -302,13 +302,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
@@ -2409,12 +2402,26 @@ var render = function() {
                   )
                 ],
                 1
+              ),
+              _vm._v(" "),
+              _c(
+                "li",
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: { name: "chackout-page", params: { slug: "test" } }
+                      }
+                    },
+                    [_vm._v("Chackout Page")]
+                  )
+                ],
+                1
               )
             ]),
             _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2)
+            _vm._m(1)
           ])
         ])
       ])
@@ -2438,21 +2445,6 @@ var staticRenderFns = [
         _c("span", { staticClass: "icon-bar" }),
         _vm._v(" "),
         _c("span", { staticClass: "icon-bar" })
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "form",
-      { staticClass: "navbar-search pull-left", attrs: { action: "#" } },
-      [
-        _c("input", {
-          staticClass: "search-query span2",
-          attrs: { type: "text", placeholder: "Search" }
-        })
       ]
     )
   },
@@ -2905,293 +2897,315 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("div", { staticClass: "well well-small" }, [
-        _c("h1", [
-          _vm._v("Check Out "),
-          _c("small", { staticClass: "pull-right" }, [
-            _vm._v(" 2 Items are in the cart ")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("hr", { staticClass: "soften" }),
-        _vm._v(" "),
-        _c("table", { staticClass: "table table-bordered table-condensed" }, [
-          _c("thead", [
-            _c("tr", [
-              _c("th", [_vm._v("Product")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Description")]),
-              _vm._v(" "),
-              _c("th", [_vm._v(" Ref. ")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Avail.")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Unit price")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Qty ")]),
-              _vm._v(" "),
-              _c("th", [_vm._v("Total")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("tbody", [
-            _c("tr", [
-              _c("td", [
-                _c("img", {
-                  attrs: { width: "100", src: "assets/img/e.jpg", alt: "" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v("Items name here"),
-                _c("br"),
-                _vm._v("Carate : 22"),
-                _c("br"),
-                _vm._v("Model : n/a")
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [
-                _c("span", { staticClass: "shopBtn" }, [
-                  _c("span", { staticClass: "icon-ok" })
+      _c("div", { staticClass: "span9" }, [
+        _c(
+          "div",
+          {
+            staticClass: "singlepage",
+            staticStyle: { "margin-right": "-40px", "margin-left": "15px" }
+          },
+          [
+            _c("div", { staticClass: "well well-small" }, [
+              _c("h1", [
+                _vm._v("Check Out "),
+                _c("small", { staticClass: "pull-right" }, [
+                  _vm._v(" 2 Items are in the cart ")
                 ])
               ]),
               _vm._v(" "),
-              _c("td", [_vm._v("$50.00")]),
+              _c("hr", { staticClass: "soften" }),
               _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  staticClass: "span1",
-                  staticStyle: { "max-width": "34px" },
-                  attrs: {
-                    placeholder: "1",
-                    id: "appendedInputButtons",
-                    size: "16",
-                    type: "text",
-                    value: "2"
-                  }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-append" }, [
-                  _c(
-                    "button",
-                    { staticClass: "btn btn-mini", attrs: { type: "button" } },
-                    [_vm._v("-")]
-                  ),
-                  _c(
-                    "button",
-                    { staticClass: "btn btn-mini", attrs: { type: "button" } },
-                    [_vm._v(" + ")]
-                  ),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-mini btn-danger",
-                      attrs: { type: "button" }
-                    },
-                    [_c("span", { staticClass: "icon-remove" })]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v("$100.00")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [
-                _c("img", {
-                  attrs: { width: "100", src: "assets/img/f.jpg", alt: "" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v("Item names and brief details"),
-                _c("br"),
-                _vm._v("Carate:24 "),
-                _c("br"),
-                _vm._v("Model:HBK24")
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" - ")]),
-              _vm._v(" "),
-              _c("td", [
-                _c("span", { staticClass: "shopBtn" }, [
-                  _c("span", { staticClass: "icon-ok" })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v("$348.42")]),
-              _vm._v(" "),
-              _c("td", [
-                _c("input", {
-                  staticClass: "span1",
-                  staticStyle: { "max-width": "34px" },
-                  attrs: { placeholder: "1", size: "16", type: "text" }
-                }),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-append" }, [
-                  _c(
-                    "button",
-                    { staticClass: "btn btn-mini", attrs: { type: "button" } },
-                    [_vm._v("-")]
-                  ),
-                  _c(
-                    "button",
-                    { staticClass: "btn btn-mini", attrs: { type: "button" } },
-                    [_vm._v("+")]
-                  ),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-mini btn-danger",
-                      attrs: { type: "button" }
-                    },
-                    [_c("span", { staticClass: "icon-remove" })]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v("$348.42")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", { staticClass: "alignR", attrs: { colspan: "6" } }, [
-                _vm._v("Total products: ")
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" $448.42")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", { staticClass: "alignR", attrs: { colspan: "6" } }, [
-                _vm._v("Total products: ")
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" $448.42")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", { staticClass: "alignR", attrs: { colspan: "6" } }, [
-                _vm._v("Total products: ")
-              ]),
-              _vm._v(" "),
-              _c("td", [_vm._v(" $448.42")])
-            ]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", { staticClass: "alignR", attrs: { colspan: "6" } }, [
-                _vm._v("Total products: ")
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "label label-primary" }, [
-                _vm._v(" $448.42")
-              ])
-            ])
-          ])
-        ]),
-        _c("br"),
-        _vm._v(" "),
-        _c("table", { staticClass: "table table-bordered" }, [
-          _c("tbody", [
-            _c("tr", [
-              _c("td", [
-                _c("form", { staticClass: "form-inline" }, [
-                  _c("label", { staticStyle: { "min-width": "159px" } }, [
-                    _vm._v(" VOUCHERS Code: ")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "input-medium",
-                    attrs: { type: "text", placeholder: "CODE" }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    { staticClass: "shopBtn", attrs: { type: "submit" } },
-                    [_vm._v(" ADD")]
-                  )
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("table", { staticClass: "table table-bordered" }, [
-          _c("tbody", [
-            _c("tr", [_c("td", [_vm._v("ESTIMATE YOUR SHIPPING & TAXES")])]),
-            _vm._v(" "),
-            _c("tr", [
-              _c("td", [
-                _c("form", { staticClass: "form-horizontal" }, [
-                  _c("div", { staticClass: "control-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "span2 control-label",
-                        attrs: { for: "inputEmail" }
-                      },
-                      [_vm._v("Country")]
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "controls" }, [
-                      _c("input", {
-                        attrs: { type: "text", placeholder: "Country" }
-                      })
+              _c(
+                "table",
+                { staticClass: "table table-bordered table-condensed" },
+                [
+                  _c("thead", [
+                    _c("tr", [
+                      _c("th", [_vm._v("Product")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Description")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v(" Ref. ")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Avail.")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Unit price")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Qty ")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Total")])
                     ])
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "control-group" }, [
-                    _c(
-                      "label",
-                      {
-                        staticClass: "span2 control-label",
-                        attrs: { for: "inputPassword" }
-                      },
-                      [_vm._v("Post Code/ Zipcode")]
-                    ),
+                  _c("tbody", [
+                    _c("tr", [
+                      _c("td", [
+                        _c("img", {
+                          attrs: {
+                            width: "100",
+                            src: "assets/img/e.jpg",
+                            alt: ""
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v("Items name here"),
+                        _c("br"),
+                        _vm._v("Carate : 22"),
+                        _c("br"),
+                        _vm._v("Model : n/a")
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(" - ")]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("span", { staticClass: "shopBtn" }, [
+                          _c("span", { staticClass: "icon-ok" })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("$50.00")]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("input", {
+                          staticClass: "span1",
+                          staticStyle: { "max-width": "34px" },
+                          attrs: {
+                            placeholder: "1",
+                            id: "appendedInputButtons",
+                            size: "16",
+                            type: "text",
+                            value: "2"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-append" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-mini",
+                              attrs: { type: "button" }
+                            },
+                            [_vm._v("-")]
+                          ),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-mini",
+                              attrs: { type: "button" }
+                            },
+                            [_vm._v(" + ")]
+                          ),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-mini btn-danger",
+                              attrs: { type: "button" }
+                            },
+                            [_c("span", { staticClass: "icon-remove" })]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("$100.00")])
+                    ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "controls" }, [
-                      _c("input", {
-                        attrs: { type: "password", placeholder: "Password" }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "control-group" }, [
-                    _c("div", { staticClass: "controls" }, [
+                    _c("tr", [
+                      _c("td", [
+                        _c("img", {
+                          attrs: {
+                            width: "100",
+                            src: "assets/img/f.jpg",
+                            alt: ""
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v("Item names and brief details"),
+                        _c("br"),
+                        _vm._v("Carate:24 "),
+                        _c("br"),
+                        _vm._v("Model:HBK24")
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(" - ")]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("span", { staticClass: "shopBtn" }, [
+                          _c("span", { staticClass: "icon-ok" })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("$348.42")]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("input", {
+                          staticClass: "span1",
+                          staticStyle: { "max-width": "34px" },
+                          attrs: { placeholder: "1", size: "16", type: "text" }
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-append" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-mini",
+                              attrs: { type: "button" }
+                            },
+                            [_vm._v("-")]
+                          ),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-mini",
+                              attrs: { type: "button" }
+                            },
+                            [_vm._v("+")]
+                          ),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-mini btn-danger",
+                              attrs: { type: "button" }
+                            },
+                            [_c("span", { staticClass: "icon-remove" })]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v("$348.42")])
+                    ]),
+                    _vm._v(" "),
+                    _c("tr", [
                       _c(
-                        "button",
-                        { staticClass: "shopBtn", attrs: { type: "submit" } },
-                        [_vm._v("Click to check the price")]
-                      )
+                        "td",
+                        { staticClass: "alignR", attrs: { colspan: "6" } },
+                        [_vm._v("Total products: ")]
+                      ),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(" $448.42")])
+                    ])
+                  ])
+                ]
+              ),
+              _c("br"),
+              _vm._v(" "),
+              _c("table", { staticClass: "table table-bordered" }, [
+                _c("tbody", [
+                  _c("tr", [
+                    _c("td", [
+                      _c("form", { staticClass: "form-inline" }, [
+                        _c("label", { staticStyle: { "min-width": "159px" } }, [
+                          _vm._v(" VOUCHERS Code: ")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "input-medium",
+                          attrs: { type: "text", placeholder: "CODE" }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          { staticClass: "shopBtn", attrs: { type: "submit" } },
+                          [_vm._v(" ADD")]
+                        )
+                      ])
                     ])
                   ])
                 ])
-              ])
+              ]),
+              _vm._v(" "),
+              _c("table", { staticClass: "table table-bordered" }, [
+                _c("tbody", [
+                  _c("tr", [
+                    _c("td", [_vm._v("ESTIMATE YOUR SHIPPING & TAXES")])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _c("td", [
+                      _c("form", { staticClass: "form-horizontal" }, [
+                        _c("div", { staticClass: "control-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "span2 control-label",
+                              attrs: { for: "inputEmail" }
+                            },
+                            [_vm._v("Country")]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "controls" }, [
+                            _c("input", {
+                              attrs: { type: "text", placeholder: "Country" }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "control-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "span2 control-label",
+                              attrs: { for: "inputPassword" }
+                            },
+                            [_vm._v("Post Code/ Zipcode")]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "controls" }, [
+                            _c("input", {
+                              attrs: {
+                                type: "password",
+                                placeholder: "Password"
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "control-group" }, [
+                          _c("div", { staticClass: "controls" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "shopBtn",
+                                attrs: { type: "submit" }
+                              },
+                              [_vm._v("Click to check the price")]
+                            )
+                          ])
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "shopBtn btn-large",
+                  attrs: { href: "products.html" }
+                },
+                [
+                  _c("span", { staticClass: "icon-arrow-left" }),
+                  _vm._v(" Continue Shopping\n        ")
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "shopBtn btn-large pull-right",
+                  attrs: { href: "login.html" }
+                },
+                [
+                  _vm._v("Next "),
+                  _c("span", { staticClass: "icon-arrow-right" })
+                ]
+              )
             ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "shopBtn btn-large",
-            attrs: { href: "products.html" }
-          },
-          [
-            _c("span", { staticClass: "icon-arrow-left" }),
-            _vm._v(" Continue Shopping\n        ")
           ]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "shopBtn btn-large pull-right",
-            attrs: { href: "login.html" }
-          },
-          [_vm._v("Next "), _c("span", { staticClass: "icon-arrow-right" })]
         )
       ])
     ])

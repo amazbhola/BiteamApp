@@ -6,7 +6,7 @@
                 <product-one :product="product"></product-one>
             </li>
         </ul>
-        
+
     </div>
 </template>
 <script>
@@ -19,7 +19,7 @@ export default {
     }
     },
     created() {
-        
+
         this.products= this.dbProductData();
     },
     methods:{

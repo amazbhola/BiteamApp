@@ -12,11 +12,11 @@
                         <ul class="nav">
                             <li ><router-link class="active" :to="{name:'home-page'}" >Home</router-link></li>
                             <li ><router-link :to="{name:'product-page', params:{slug:'test'}}" >Product Page</router-link></li>
-                            
+                            <li><router-link :to="{name: 'chackout-page', params:{slug: 'test'} }">Chackout Page</router-link></li>
                         </ul>
-                        <form action="#" class="navbar-search pull-left">
+                        <!-- <form action="#" class="navbar-search pull-left">
                             <input type="text" placeholder="Search" class="search-query span2">
-                        </form>
+                        </form> -->
                         <ul class="nav pull-right">
                             <li class="dropdown">
                                 <a data-toggle="dropdown" class="dropdown-toggle" href="#"><span
