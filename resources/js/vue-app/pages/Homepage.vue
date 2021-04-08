@@ -5,56 +5,41 @@
             <li class="span3" v-for="(product,key) in products" :key="key">
                 <product-one :product="product"></product-one>
             </li>
+            <li class="span3" v-for="(district,key) in districts.slice(0,10)" :key="key">{{ district.district  }} | {{ district.upazilla }}</li>
         </ul>
+
 
     </div>
 </template>
 <script>
 import ProductOne from '../components/Product';
+import Axios from 'axios';
 export default {
     components:{ProductOne},
     data(){
     return {
-        products:[]
+        products:[],
+        districts:[],
     }
     },
-    created() {
+    async created() {
 
-        this.products= this.dbProductData();
+        this.products= await this.dbProductData();
+        this.districts = await this.bd_district();
     },
     methods:{
-        dbProductData(){
-            const dbproduct = [
-            {
-                name :'Samsung',
-                slug :'Samsung',
-                price:1000,
-                image:'https://picsum.photos/200/200',
-                description:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident eum doloremque quos quidem in odio quisquam molestiae? Asperiores, officiis laudantium illum reiciendis quo sed quibusdam non! Quisquam harum cum nisi!'
-            },
-            {
-                name :'Xiaomi',
-                slug :'Xiaomi',
-                price:1500,
-                image:'https://picsum.photos/200/200',
-                description:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident eum doloremque quos quidem in odio quisquam molestiae? Asperiores, officiis laudantium illum reiciendis quo sed quibusdam non! Quisquam harum cum nisi!'
-            },
-            {
-                name :'Iphone',
-                slug :'Iphone',
-                price:1000,
-                image:'https://picsum.photos/200/200',
-                description:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident eum doloremque quos quidem in odio quisquam molestiae? Asperiores, officiis laudantium illum reiciendis quo sed quibusdam non! Quisquam harum cum nisi!'
-            },
-            {
-                name :'Nokia',
-                slug :'Nokia',
-                price:1000,
-                image:'https://picsum.photos/200/200',
-                description:'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident eum doloremque quos quidem in odio quisquam molestiae? Asperiores, officiis laudantium illum reiciendis quo sed quibusdam non! Quisquam harum cum nisi!'
-            }
-        ];
-        return dbproduct;
+        async dbProductData(){
+            const apiurl = 'http://localhost:8000/api/v1/product';
+            const getdata = await Axios.get(apiurl);
+            const result = getdata.data;
+
+        return result.data;
+        },
+        async bd_district(){
+            const dis_url = 'https://bdapis.herokuapp.com/api/v1.0/division/:divisionName';
+            const dis_getdata = await Axios.get(dis_url);
+            const result = dis_getdata.data;
+            return result.data;
         }
     }
 }

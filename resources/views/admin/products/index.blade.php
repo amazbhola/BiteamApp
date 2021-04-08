@@ -18,12 +18,12 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+                                <form class="needs-validation" novalidate action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label>Product Name</label>
-                                            <input type="text" name="name" class="form-control" placeholder="Product Name">
+                                            <input type="text" name="name" class="form-control" placeholder="Product Name" required>
                                             @error('name')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
@@ -32,7 +32,7 @@
                                             <div class="form-group col-6">
                                                 <label>Product price</label>
                                                 <input type="text" name="price" class="form-control"
-                                                    placeholder="Product Price">
+                                                    placeholder="Product Price" required>
                                                 @error('price')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
@@ -42,7 +42,7 @@
                                                 <select id="category_select" class="form-control" name="category_id">
                                                     <option value="">Select Cacegory</option>
                                                     @foreach ($categories as $category)
-                                                        <option value="{{ $category->id }}">{{ $category->name }}
+                                                        <option value="{{ $category->id }}" required>{{ $category->name }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -55,14 +55,14 @@
                                             <div class="form-group col-3">
                                                 <label>Product Quantity</label>
                                                 <input type="text" name="quantity" class="form-control"
-                                                    placeholder="Product Quantity">
+                                                    placeholder="Product Quantity" required>
                                                 @error('quantity')
                                                     <p class="text-danger">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-6">
                                                 <label>Product Status</label>
-                                                <select name="is_active" id="" class="form-control">
+                                                <select name="is_active" id="" class="form-control" required>
                                                     <option value="0">Inactive</option>
                                                     <option value="1">Active</option>
                                                 </select>
@@ -73,7 +73,7 @@
                                             <div class="form-group col-3">
                                                 <label>Product Brand</label>
                                                 <select id="category_select" class="form-control" name="brand_id">
-                                                    <option value="">Select Brand</option>
+                                                    <option value="" required>Select Brand</option>
                                                     @foreach ($brands as $brand)
                                                         <option value="{{ $brand->id }}">{{ $brand->name }}
                                                         </option>
@@ -86,7 +86,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Product Image</label>
-                                            <input type="file" name="image" class="form-control-sm">
+                                            <input type="file" name="image" class="form-control-sm" required>
                                             @error('image')
                                                 <p class="text-danger">{{ $message }}</p>
                                             @enderror
@@ -298,4 +298,24 @@
             <!-- /.card-body -->
         </div>
     </div>
+    <script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
 @endsection
