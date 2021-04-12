@@ -18,7 +18,11 @@ const routes = [
    },
    {
       'name':'chackout-page',
-      'path':'/chackout/:slug',
+      'path':'/chackout',
+      'params':{
+          product:null,
+          quentity:null
+      },
       'component':ChackoutPage
    }
 ];

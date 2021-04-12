@@ -34,12 +34,7 @@
                                     /></a>
                                 </div>
                                 <div class="item">
-                                    <a href="#">
-                                        <img
-                                            src="https://picsum.photos/200/200"
-                                            alt=""
-                                            style="width:100%"
-                                    /></a>
+                                    <img  :src="'/'+product.image" alt=""/>
                                 </div>
                             </div>
                             <a
@@ -57,62 +52,29 @@
                         </div>
                     </div>
                     <div class="span7">
-                        <h3>Name of the Item [$140.00]</h3>
+                        <h3>{{ product.name }} [$140.00]</h3>
                         <hr class="soft" />
 
-                        <form class="form-horizontal qtyFrm">
+                        <div class="form-horizontal qtyFrm">
                             <div class="control-group">
                                 <label class="control-label"
-                                    ><span>$140.00</span></label
+                                    ><span>TK :{{ product.price }}</span></label
                                 >
                                 <div class="controls">
-                                    <input
+                                    <input v-model="buyQuantity"
                                         type="number"
                                         class="span6"
                                         placeholder="Qty."
                                     />
                                 </div>
                             </div>
-
-                            <div class="control-group">
-                                <label class="control-label"
-                                    ><span>Color</span></label
-                                >
-                                <div class="controls">
-                                    <select class="span11">
-                                        <option>Red</option>
-                                        <option>Purple</option>
-                                        <option>Pink</option>
-                                        <option>Red</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label"
-                                    ><span>Materials</span></label
-                                >
-                                <div class="controls">
-                                    <select class="span11">
-                                        <option>Material 1</option>
-                                        <option>Material 2</option>
-                                        <option>Material 3</option>
-                                        <option>Material 4</option>
-                                    </select>
-                                </div>
-                            </div>
                             <h4>100 items in stock</h4>
+
                             <p>
-                                Nowadays the lingerie industry is one of the
-                                most successful business spheres. Nowadays the
-                                lingerie industry is one of ...
+                                <router-link class="shopBtn" :to="{name:'chackout-page', query:{'product':product,'quantity':buyQuantity}}" ><span class=" icon-shopping-cart"></span>
+                                    Buy Now</router-link>
                             </p>
-                            <p>
-                                <button type="submit" class="shopBtn">
-                                    <span class=" icon-shopping-cart"></span>
-                                    Add to cart
-                                </button>
-                            </p>
-                        </form>
+                        </div>
                     </div>
                 </div>
                 <hr class="softn clr" />
@@ -179,93 +141,9 @@
                             </tbody>
                         </table>
                         <p>
-                            Raw denim you probably haven't heard of them jean
-                            shorts Austin. Nesciunt tofu stumptown aliqua, retro
-                            synth master cleanse. Mustache cliche tempor,
-                            williamsburg carles vegan helvetica. Reprehenderit
-                            butcher retro keffiyeh dreamcatcher synth. Cosby
-                            sweater eu banh mi, qui irure terry richardson ex
-                            squid. Aliquip placeat salvia cillum iphone. Seitan
-                            aliquip quis cardigan american apparel, butcher
-                            voluptate nisi qui.
+                            {{product.description}}
                         </p>
-                        <p>
-                            Raw denim you probably haven't heard of them jean
-                            shorts Austin. Nesciunt tofu stumptown aliqua, retro
-                            synth master cleanse. Mustache cliche tempor,
-                            williamsburg carles vegan helvetica. Reprehenderit
-                            butcher retro keffiyeh dreamcatcher synth. Cosby
-                            sweater eu banh mi, qui irure terry richardson ex
-                            squid. Aliquip placeat salvia cillum iphone. Seitan
-                            aliquip quis cardigan american apparel, butcher
-                            voluptate nisi qui.
-                        </p>
-                        <p>
-                            Raw denim you probably haven't heard of them jean
-                            shorts Austin. Nesciunt tofu stumptown aliqua, retro
-                            synth master cleanse. Mustache cliche tempor,
-                            williamsburg carles vegan helvetica. Reprehenderit
-                            butcher retro keffiyeh dreamcatcher synth. Cosby
-                            sweater eu banh mi, qui irure terry richardson ex
-                            squid. Aliquip placeat salvia cillum iphone. Seitan
-                            aliquip quis cardigan american apparel, butcher
-                            voluptate nisi qui.
-                        </p>
-                        <p>
-                            Raw denim you probably haven't heard of them jean
-                            shorts Austin. Nesciunt tofu stumptown aliqua, retro
-                            synth master cleanse. Mustache cliche tempor,
-                            williamsburg carles vegan helvetica. Reprehenderit
-                            butcher retro keffiyeh dreamcatcher synth. Cosby
-                            sweater eu banh mi, qui irure terry richardson ex
-                            squid. Aliquip placeat salvia cillum iphone. Seitan
-                            aliquip quis cardigan american apparel, butcher
-                            voluptate nisi qui.
-                        </p>
-                        <p>
-                            Raw denim you probably haven't heard of them jean
-                            shorts Austin. Nesciunt tofu stumptown aliqua, retro
-                            synth master cleanse. Mustache cliche tempor,
-                            williamsburg carles vegan helvetica. Reprehenderit
-                            butcher retro keffiyeh dreamcatcher synth. Cosby
-                            sweater eu banh mi, qui irure terry richardson ex
-                            squid. Aliquip placeat salvia cillum iphone. Seitan
-                            aliquip quis cardigan american apparel, butcher
-                            voluptate nisi qui.
-                        </p>
-                        <p>
-                            Raw denim you probably haven't heard of them jean
-                            shorts Austin. Nesciunt tofu stumptown aliqua, retro
-                            synth master cleanse. Mustache cliche tempor,
-                            williamsburg carles vegan helvetica. Reprehenderit
-                            butcher retro keffiyeh dreamcatcher synth. Cosby
-                            sweater eu banh mi, qui irure terry richardson ex
-                            squid. Aliquip placeat salvia cillum iphone. Seitan
-                            aliquip quis cardigan american apparel, butcher
-                            voluptate nisi qui.
-                        </p>
-                        <p>
-                            Raw denim you probably haven't heard of them jean
-                            shorts Austin. Nesciunt tofu stumptown aliqua, retro
-                            synth master cleanse. Mustache cliche tempor,
-                            williamsburg carles vegan helvetica. Reprehenderit
-                            butcher retro keffiyeh dreamcatcher synth. Cosby
-                            sweater eu banh mi, qui irure terry richardson ex
-                            squid. Aliquip placeat salvia cillum iphone. Seitan
-                            aliquip quis cardigan american apparel, butcher
-                            voluptate nisi qui.
-                        </p>
-                        <p>
-                            Raw denim you probably haven't heard of them jean
-                            shorts Austin. Nesciunt tofu stumptown aliqua, retro
-                            synth master cleanse. Mustache cliche tempor,
-                            williamsburg carles vegan helvetica. Reprehenderit
-                            butcher retro keffiyeh dreamcatcher synth. Cosby
-                            sweater eu banh mi, qui irure terry richardson ex
-                            squid. Aliquip placeat salvia cillum iphone. Seitan
-                            aliquip quis cardigan american apparel, butcher
-                            voluptate nisi qui.
-                        </p>
+
                     </div>
                     <div class="tab-pane fade" id="profile">
                         <div class="row-fluid">
@@ -725,7 +603,7 @@
                                 />
                             </div>
                             <div class="span6">
-                                <h5>Product Name</h5>
+                                <h5>{{ product.name }}</h5>
                                 <p>
                                     Nowadays the lingerie industry is one of the
                                     most successful business spheres. We always
@@ -768,7 +646,26 @@
     </div>
 </template>
 <script>
+import Axios from 'axios';
 export default {
-    
+    data(){
+        return{
+            product: [],
+            buyQuantity:1,
+        }
+    },
+    async created() {
+        const slug = this.$route.params.slug;
+        this.product = await this.getdatafromDB(slug);
+    },
+    methods: {
+        async getdatafromDB(slug){
+            const urlbyslug = 'http://localhost:8000/api/v1/product/'+slug;
+            const response = await Axios.get(urlbyslug);
+            const result = response.data.data;
+            return result;
+
+        }
+    },
 }
 </script>

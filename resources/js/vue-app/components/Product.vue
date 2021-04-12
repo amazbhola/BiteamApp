@@ -1,7 +1,7 @@
 <template>
     <div>
-     
-        <router-link :to="{name:'product-page'}">
+
+        <router-link :to="{name:'product-page',params:{slug:product.slug}}">
                     <div class="thumbnail">
 
                         <a href="product_details.html" class="overlay"></a>
@@ -18,7 +18,7 @@
                             <p>{{ product.name }}</p>
                             <p><strong>{{product.price}} Taka</strong></p>
                             <h4>
-                                <router-link  class="shopBtn" title="add to cart"  >Add to cart</router-link>
+                                <a name="" id="" class="shopBtn" title="add to cart" href="#" role="button">Add to cart</a>
 
                             </h4>
                             <div class="actionList">

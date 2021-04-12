@@ -7,6 +7,7 @@ use App\Models\Product;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Symfony\Component\VarDumper\Cloner\Data;
 
 class ProductApiController extends Controller
@@ -66,7 +67,7 @@ class ProductApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json($request->all());
     }
 
     /**
@@ -75,9 +76,14 @@ class ProductApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        try {
+            $data = Product::where('slug',$slug)->first();
+            return $this->ApijsonSuccess('data found',$data);
+        } catch (Exception $e) {
+            return $this->ApijsonError($e->getMessage());
+        }
     }
 
     /**

@@ -2035,6 +2035,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2151,7 +2161,86 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      ChackoutProduct: null,
+      ChackoutQuantity: null,
+      formdata: {
+        customer_name: '',
+        customer_email: '',
+        customer_mobile_no: '',
+        customer_address: ''
+      }
+    };
+  },
+  beforeMount: function beforeMount() {
+    this.ChackoutProduct = this.$route.query.product;
+    this.ChackoutQuantity = parseInt(this.$route.query.quantity);
+  },
+  computed: {
+    getTotalPrice: function getTotalPrice() {
+      if (this.ChackoutQuantity !== null && this.ChackoutProduct !== null) {
+        var total = this.ChackoutQuantity * this.ChackoutProduct.price;
+        return total;
+      } else {
+        return 0;
+      }
+    }
+  },
+  methods: {
+    PlaceOrder: function PlaceOrder() {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var Orderdata, orderurl, createdata;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                Orderdata = _this.getOrderdata();
+                orderurl = 'http://localhost:8000/api/v1/product';
+                _context.next = 5;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post(orderurl, Orderdata);
+
+              case 5:
+                createdata = _context.sent;
+                console.log(createdata.data);
+                _context.next = 12;
+                break;
+
+              case 9:
+                _context.prev = 9;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0);
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 9]]);
+      }))();
+    },
+    getOrderdata: function getOrderdata() {
+      var OrderData = {
+        product_id: this.ChackoutProduct.id,
+        quantity: this.ChackoutQuantity,
+        total: this.getTotalPrice,
+        shipping_address: this.formdata
+      };
+      return OrderData;
+    }
+  }
+});
 
 /***/ }),
 
@@ -2187,9 +2276,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2198,8 +2284,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      products: [],
-      districts: []
+      products: []
     };
   },
   created: function created() {
@@ -2215,13 +2300,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
             case 2:
               _this.products = _context.sent;
-              _context.next = 5;
-              return _this.bd_district();
 
-            case 5:
-              _this.districts = _context.sent;
-
-            case 6:
+            case 3:
             case "end":
               return _context.stop();
           }
@@ -2253,30 +2333,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee2);
       }))();
-    },
-    bd_district: function bd_district() {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-        var dis_url, dis_getdata, result;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                dis_url = 'https://bdapis.herokuapp.com/api/v1.0/division/:divisionName';
-                _context3.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default().get(dis_url);
-
-              case 3:
-                dis_getdata = _context3.sent;
-                result = dis_getdata.data;
-                return _context3.abrupt("return", result.data);
-
-              case 6:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
     }
   }
 });
@@ -2294,6 +2350,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -2941,129 +3007,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      product: [],
+      buyQuantity: 1
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var slug;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              slug = _this.$route.params.slug;
+              _context.next = 3;
+              return _this.getdatafromDB(slug);
+
+            case 3:
+              _this.product = _context.sent;
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
+  },
+  methods: {
+    getdatafromDB: function getdatafromDB(slug) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var urlbyslug, response, result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                urlbyslug = 'http://localhost:8000/api/v1/product/' + slug;
+                _context2.next = 3;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get(urlbyslug);
+
+              case 3:
+                response = _context2.sent;
+                result = response.data.data;
+                return _context2.abrupt("return", result);
+
+              case 6:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    }
+  }
+});
 
 /***/ }),
 
@@ -5294,7 +5296,7 @@ var render = function() {
                     "router-link",
                     {
                       attrs: {
-                        to: { name: "product-page", params: { slug: "test" } }
+                        to: { name: "product-page", params: { slug: "slug" } }
                       }
                     },
                     [_vm._v("Product Page")]
@@ -5310,7 +5312,7 @@ var render = function() {
                     "router-link",
                     {
                       attrs: {
-                        to: { name: "chackout-page", params: { slug: "test" } }
+                        to: { name: "chackout-page", params: { slug: "slug" } }
                       }
                     },
                     [_vm._v("Chackout Page")]
@@ -5429,57 +5431,73 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("router-link", { attrs: { to: { name: "product-page" } } }, [
-        _c("div", { staticClass: "thumbnail" }, [
-          _c("a", {
-            staticClass: "overlay",
-            attrs: { href: "product_details.html" }
-          }),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "zoomTool",
-              attrs: { href: "product_details.html", title: "add to cart" }
-            },
-            [_c("span", { staticClass: "icon-search" }), _vm._v(" QUICK VIEW")]
-          ),
-          _vm._v(" "),
-          _c("img", { attrs: { src: _vm.product.image, alt: "" } }),
-          _vm._v(" "),
-          _c("div", { staticClass: "caption cntr" }, [
-            _c("p", [_vm._v(_vm._s(_vm.product.name))]),
-            _vm._v(" "),
-            _c("p", [
-              _c("strong", [_vm._v(_vm._s(_vm.product.price) + " Taka")])
-            ]),
+      _c(
+        "router-link",
+        {
+          attrs: {
+            to: { name: "product-page", params: { slug: _vm.product.slug } }
+          }
+        },
+        [
+          _c("div", { staticClass: "thumbnail" }, [
+            _c("a", {
+              staticClass: "overlay",
+              attrs: { href: "product_details.html" }
+            }),
             _vm._v(" "),
             _c(
-              "h4",
+              "a",
+              {
+                staticClass: "zoomTool",
+                attrs: { href: "product_details.html", title: "add to cart" }
+              },
               [
-                _c(
-                  "router-link",
-                  { staticClass: "shopBtn", attrs: { title: "add to cart" } },
-                  [_vm._v("Add to cart")]
-                )
-              ],
-              1
+                _c("span", { staticClass: "icon-search" }),
+                _vm._v(" QUICK VIEW")
+              ]
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "actionList" }, [
-              _c("a", { staticClass: "pull-left", attrs: { href: "#" } }, [
-                _vm._v("Add to Wish List ")
+            _c("img", { attrs: { src: _vm.product.image, alt: "" } }),
+            _vm._v(" "),
+            _c("div", { staticClass: "caption cntr" }, [
+              _c("p", [_vm._v(_vm._s(_vm.product.name))]),
+              _vm._v(" "),
+              _c("p", [
+                _c("strong", [_vm._v(_vm._s(_vm.product.price) + " Taka")])
               ]),
               _vm._v(" "),
-              _c("a", { staticClass: "pull-left", attrs: { href: "#" } }, [
-                _vm._v(" Add to Compare ")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("br", { staticClass: "clr" })
+              _c("h4", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "shopBtn",
+                    attrs: {
+                      name: "",
+                      id: "",
+                      title: "add to cart",
+                      href: "#",
+                      role: "button"
+                    }
+                  },
+                  [_vm._v("Add to cart")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "actionList" }, [
+                _c("a", { staticClass: "pull-left", attrs: { href: "#" } }, [
+                  _vm._v("Add to Wish List ")
+                ]),
+                _vm._v(" "),
+                _c("a", { staticClass: "pull-left", attrs: { href: "#" } }, [
+                  _vm._v(" Add to Compare ")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("br", { staticClass: "clr" })
+            ])
           ])
-        ])
-      ])
+        ]
+      )
     ],
     1
   )
@@ -5610,160 +5628,6 @@ var staticRenderFns = [
               )
             ])
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "well well-small alert alert-warning cntr" }, [
-          _c("h2", [_vm._v("50% Discount")]),
-          _vm._v(" "),
-          _c("p", [
-            _vm._v("\n            only valid for online order. "),
-            _c("br"),
-            _c("br"),
-            _c("a", { staticClass: "defaultBtn", attrs: { href: "#" } }, [
-              _vm._v("Click here ")
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "well well-small" }, [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("img", {
-              attrs: {
-                src: "assets/img/paypal.jpg",
-                alt: "payment method paypal"
-              }
-            })
-          ])
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "shopBtn btn-block", attrs: { href: "#" } }, [
-          _vm._v("Upcoming products "),
-          _c("br"),
-          _c("small", [_vm._v("Click to view")])
-        ]),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("br"),
-        _vm._v(" "),
-        _c("ul", { staticClass: "nav nav-list promowrapper" }, [
-          _c("li", [
-            _c("div", { staticClass: "thumbnail" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "zoomTool",
-                  attrs: { href: "product_details.html", title: "add to cart" }
-                },
-                [
-                  _c("span", { staticClass: "icon-search" }),
-                  _vm._v("\n                    QUICK VIEW")
-                ]
-              ),
-              _vm._v(" "),
-              _c("img", {
-                attrs: {
-                  src: "assets/img/bootstrap-ecommerce-templates.png",
-                  alt: "bootstrap ecommerce templates"
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "caption" }, [
-                _c("h4", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "defaultBtn",
-                      attrs: { href: "product_details.html" }
-                    },
-                    [_vm._v("VIEW")]
-                  ),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "pull-right" }, [_vm._v("$22.00")])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticStyle: { border: "0" } }, [_vm._v("  ")]),
-          _vm._v(" "),
-          _c("li", [
-            _c("div", { staticClass: "thumbnail" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "zoomTool",
-                  attrs: { href: "product_details.html", title: "add to cart" }
-                },
-                [
-                  _c("span", { staticClass: "icon-search" }),
-                  _vm._v("\n                    QUICK VIEW")
-                ]
-              ),
-              _vm._v(" "),
-              _c("img", {
-                attrs: {
-                  src: "assets/img/shopping-cart-template.png",
-                  alt: "shopping cart template"
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "caption" }, [
-                _c("h4", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "defaultBtn",
-                      attrs: { href: "product_details.html" }
-                    },
-                    [_vm._v("VIEW")]
-                  ),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "pull-right" }, [_vm._v("$22.00")])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticStyle: { border: "0" } }, [_vm._v("  ")]),
-          _vm._v(" "),
-          _c("li", [
-            _c("div", { staticClass: "thumbnail" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "zoomTool",
-                  attrs: { href: "product_details.html", title: "add to cart" }
-                },
-                [
-                  _c("span", { staticClass: "icon-search" }),
-                  _vm._v("\n                    QUICK VIEW")
-                ]
-              ),
-              _vm._v(" "),
-              _c("img", {
-                attrs: {
-                  src: "assets/img/bootstrap-template.png",
-                  alt: "bootstrap template"
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "caption" }, [
-                _c("h4", [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "defaultBtn",
-                      attrs: { href: "product_details.html" }
-                    },
-                    [_vm._v("VIEW")]
-                  ),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "pull-right" }, [_vm._v("$22.00")])
-                ])
-              ])
-            ])
-          ])
         ])
       ])
     ])
@@ -5791,326 +5655,399 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "span9" }, [
-        _c(
-          "div",
-          {
-            staticClass: "singlepage",
-            staticStyle: { "margin-right": "-40px", "margin-left": "15px" }
-          },
-          [
-            _c("div", { staticClass: "well well-small" }, [
-              _c("h1", [
-                _vm._v("Check Out "),
-                _c("small", { staticClass: "pull-right" }, [
-                  _vm._v(" 2 Items are in the cart ")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("hr", { staticClass: "soften" }),
-              _vm._v(" "),
-              _c(
-                "table",
-                { staticClass: "table table-bordered table-condensed" },
-                [
-                  _c("thead", [
-                    _c("tr", [
-                      _c("th", [_vm._v("Product")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Description")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v(" Ref. ")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Avail.")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Unit price")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Qty ")]),
-                      _vm._v(" "),
-                      _c("th", [_vm._v("Total")])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tbody", [
-                    _c("tr", [
-                      _c("td", [
-                        _c("img", {
-                          attrs: {
-                            width: "100",
-                            src: "assets/img/e.jpg",
-                            alt: ""
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v("Items name here"),
-                        _c("br"),
-                        _vm._v("Carate : 22"),
-                        _c("br"),
-                        _vm._v("Model : n/a")
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" - ")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("span", { staticClass: "shopBtn" }, [
-                          _c("span", { staticClass: "icon-ok" })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("$50.00")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("input", {
-                          staticClass: "span1",
-                          staticStyle: { "max-width": "34px" },
-                          attrs: {
-                            placeholder: "1",
-                            id: "appendedInputButtons",
-                            size: "16",
-                            type: "text",
-                            value: "2"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "input-append" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-mini",
-                              attrs: { type: "button" }
-                            },
-                            [_vm._v("-")]
-                          ),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-mini",
-                              attrs: { type: "button" }
-                            },
-                            [_vm._v(" + ")]
-                          ),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-mini btn-danger",
-                              attrs: { type: "button" }
-                            },
-                            [_c("span", { staticClass: "icon-remove" })]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("$100.00")])
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("td", [
-                        _c("img", {
-                          attrs: {
-                            width: "100",
-                            src: "assets/img/f.jpg",
-                            alt: ""
-                          }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _vm._v("Item names and brief details"),
-                        _c("br"),
-                        _vm._v("Carate:24 "),
-                        _c("br"),
-                        _vm._v("Model:HBK24")
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" - ")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("span", { staticClass: "shopBtn" }, [
-                          _c("span", { staticClass: "icon-ok" })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("$348.42")]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("input", {
-                          staticClass: "span1",
-                          staticStyle: { "max-width": "34px" },
-                          attrs: { placeholder: "1", size: "16", type: "text" }
-                        }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "input-append" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-mini",
-                              attrs: { type: "button" }
-                            },
-                            [_vm._v("-")]
-                          ),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-mini",
-                              attrs: { type: "button" }
-                            },
-                            [_vm._v("+")]
-                          ),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-mini btn-danger",
-                              attrs: { type: "button" }
-                            },
-                            [_c("span", { staticClass: "icon-remove" })]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("$348.42")])
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c(
-                        "td",
-                        { staticClass: "alignR", attrs: { colspan: "6" } },
-                        [_vm._v("Total products: ")]
-                      ),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" $448.42")])
-                    ])
-                  ])
-                ]
-              ),
-              _c("br"),
-              _vm._v(" "),
-              _c("table", { staticClass: "table table-bordered" }, [
+  return _c("div", [
+    _c("div", { staticClass: "span9" }, [
+      _c(
+        "div",
+        {
+          staticClass: "singlepage",
+          staticStyle: { "margin-right": "-40px", "margin-left": "15px" }
+        },
+        [
+          _c("div", { staticClass: "well well-small" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("hr", { staticClass: "soften" }),
+            _vm._v(" "),
+            _c(
+              "table",
+              { staticClass: "table table-bordered table-condensed" },
+              [
+                _vm._m(1),
+                _vm._v(" "),
                 _c("tbody", [
                   _c("tr", [
                     _c("td", [
-                      _c("form", { staticClass: "form-inline" }, [
-                        _c("label", { staticStyle: { "min-width": "159px" } }, [
-                          _vm._v(" VOUCHERS Code: ")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "input-medium",
-                          attrs: { type: "text", placeholder: "CODE" }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          { staticClass: "shopBtn", attrs: { type: "submit" } },
-                          [_vm._v(" ADD")]
-                        )
-                      ])
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("table", { staticClass: "table table-bordered" }, [
-                _c("tbody", [
-                  _c("tr", [
-                    _c("td", [_vm._v("ESTIMATE YOUR SHIPPING & TAXES")])
+                      _c("img", {
+                        attrs: {
+                          width: "100",
+                          src: "/" + _vm.ChackoutProduct.image,
+                          alt: ""
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.ChackoutProduct.name)),
+                      _c("br"),
+                      _vm._v("Carate : 22"),
+                      _c("br"),
+                      _vm._v("Model : n/a")
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(" - ")]),
+                    _vm._v(" "),
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(_vm.ChackoutProduct.price))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.ChackoutQuantity) +
+                          "\n                    "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("Tk: " + _vm._s(_vm.getTotalPrice))])
                   ]),
                   _vm._v(" "),
                   _c("tr", [
-                    _c("td", [
-                      _c("form", { staticClass: "form-horizontal" }, [
+                    _c(
+                      "td",
+                      { staticClass: "alignR", attrs: { colspan: "6" } },
+                      [_vm._v("Total products: ")]
+                    ),
+                    _vm._v(" "),
+                    _c("td", [_vm._v("Tk: " + _vm._s(_vm.getTotalPrice))])
+                  ])
+                ])
+              ]
+            ),
+            _c("br"),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _c("table", { staticClass: "table table-bordered" }, [
+              _c("tbody", [
+                _vm._m(4),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", [
+                    _c(
+                      "form",
+                      {
+                        staticClass: "form-horizontal",
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.PlaceOrder($event)
+                          }
+                        }
+                      },
+                      [
                         _c("div", { staticClass: "control-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "span2 control-label",
-                              attrs: { for: "inputEmail" }
-                            },
-                            [_vm._v("Country")]
-                          ),
+                          _c("label", { staticClass: "span2 control-label" }, [
+                            _vm._v("Customar Name")
+                          ]),
                           _vm._v(" "),
                           _c("div", { staticClass: "controls" }, [
                             _c("input", {
-                              attrs: { type: "text", placeholder: "Country" }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "control-group" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass: "span2 control-label",
-                              attrs: { for: "inputPassword" }
-                            },
-                            [_vm._v("Post Code/ Zipcode")]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "controls" }, [
-                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.formdata.customer_name,
+                                  expression: "formdata.customer_name"
+                                }
+                              ],
                               attrs: {
-                                type: "password",
-                                placeholder: "Password"
+                                type: "text",
+                                name: "customar_name",
+                                placeholder: "Customar Name",
+                                required: ""
+                              },
+                              domProps: { value: _vm.formdata.customer_name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.formdata,
+                                    "customer_name",
+                                    $event.target.value
+                                  )
+                                }
                               }
                             })
                           ])
                         ]),
                         _vm._v(" "),
                         _c("div", { staticClass: "control-group" }, [
+                          _c("label", { staticClass: "span2 control-label" }, [
+                            _vm._v("Email Address")
+                          ]),
+                          _vm._v(" "),
                           _c("div", { staticClass: "controls" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "shopBtn",
-                                attrs: { type: "submit" }
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.formdata.customer_email,
+                                  expression: "formdata.customer_email"
+                                }
+                              ],
+                              attrs: {
+                                type: "email",
+                                name: "customar_email",
+                                placeholder: "Email Address",
+                                required: ""
                               },
-                              [_vm._v("Click to check the price")]
-                            )
+                              domProps: { value: _vm.formdata.customer_email },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.formdata,
+                                    "customer_email",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
                           ])
-                        ])
-                      ])
-                    ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "control-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "span2 control-label",
+                              attrs: { for: "" }
+                            },
+                            [_vm._v("Mobile No")]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "controls" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.formdata.customer_mobile_no,
+                                  expression: "formdata.customer_mobile_no"
+                                }
+                              ],
+                              attrs: {
+                                type: "number",
+                                min: "11",
+                                name: "customar_mobile_no",
+                                id: "",
+                                placeholder: "Mobile No",
+                                required: ""
+                              },
+                              domProps: {
+                                value: _vm.formdata.customer_mobile_no
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.formdata,
+                                    "customer_mobile_no",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "control-group" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass: "span2 control-label",
+                              attrs: { for: "" }
+                            },
+                            [_vm._v("Customar Address")]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "controls" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.formdata.customer_address,
+                                  expression: "formdata.customer_address"
+                                }
+                              ],
+                              attrs: {
+                                type: "text",
+                                name: "customar_address",
+                                id: "",
+                                placeholder: "Customar Address",
+                                required: ""
+                              },
+                              domProps: {
+                                value: _vm.formdata.customer_address
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.formdata,
+                                    "customer_address",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(5)
+                      ]
+                    )
                   ])
                 ])
-              ]),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "shopBtn btn-large",
-                  attrs: { href: "products.html" }
-                },
-                [
-                  _c("span", { staticClass: "icon-arrow-left" }),
-                  _vm._v(" Continue Shopping\n        ")
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "shopBtn btn-large pull-right",
-                  attrs: { href: "login.html" }
-                },
-                [
-                  _vm._v("Next "),
-                  _c("span", { staticClass: "icon-arrow-right" })
-                ]
-              )
-            ])
-          ]
-        )
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(6),
+            _vm._v(" "),
+            _vm._m(7)
+          ])
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h1", [
+      _vm._v("Check Out "),
+      _c("small", { staticClass: "pull-right" }, [
+        _vm._v(" 2 Items are in the cart ")
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Product")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Description")]),
+        _vm._v(" "),
+        _c("th", [_vm._v(" Ref. ")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Avail.")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Unit price")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Qty ")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Total")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("span", { staticClass: "shopBtn" }, [
+        _c("span", { staticClass: "icon-ok" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("table", { staticClass: "table table-bordered" }, [
+      _c("tbody", [
+        _c("tr", [
+          _c("td", [
+            _c("form", { staticClass: "form-inline" }, [
+              _c("label", { staticStyle: { "min-width": "159px" } }, [
+                _vm._v(" VOUCHERS Code: ")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "input-medium",
+                attrs: { type: "text", placeholder: "CODE" }
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                { staticClass: "shopBtn", attrs: { type: "submit" } },
+                [_vm._v(" ADD")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [_c("td", [_vm._v("ESTIMATE YOUR SHIPPING & TAXES")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "control-group" }, [
+      _c("div", { staticClass: "controls" }, [
+        _c("button", { staticClass: "shopBtn", attrs: { type: "submit" } }, [
+          _vm._v("Place Order")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "shopBtn btn-large", attrs: { href: "products.html" } },
+      [
+        _c("span", { staticClass: "icon-arrow-left" }),
+        _vm._v(" Continue Shopping\n        ")
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "shopBtn btn-large pull-right",
+        attrs: { href: "login.html" }
+      },
+      [_vm._v("Next "), _c("span", { staticClass: "icon-arrow-right" })]
+    )
   }
 ]
 render._withStripped = true
@@ -6139,25 +6076,15 @@ var render = function() {
     _c(
       "ul",
       { staticClass: "thumbnails" },
-      [
-        _vm._l(_vm.products, function(product, key) {
-          return _c(
-            "li",
-            { key: key, staticClass: "span3" },
-            [_c("product-one", { attrs: { product: product } })],
-            1
-          )
-        }),
-        _vm._v(" "),
-        _vm._l(_vm.districts.slice(0, 10), function(district, key) {
-          return _c("li", { key: key, staticClass: "span3" }, [
-            _vm._v(
-              _vm._s(district.district) + " | " + _vm._s(district.upazilla)
-            )
-          ])
-        })
-      ],
-      2
+      _vm._l(_vm.products, function(product, key) {
+        return _c(
+          "li",
+          { key: key, staticClass: "span3" },
+          [_c("ProductOne", { attrs: { product: product } })],
+          1
+        )
+      }),
+      0
     )
   ])
 }
@@ -6184,1160 +6111,1036 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { attrs: { id: "singlepage" } }, [
+    _c("div", { staticClass: "span9" }, [
+      _c(
+        "div",
+        {
+          staticClass: "singlepage",
+          staticStyle: { "margin-right": "-40px", "margin-left": "15px" }
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "well well-small" }, [
+            _c("div", { staticClass: "row-fluid" }, [
+              _c("div", { staticClass: "span5" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "carousel slide cntr",
+                    attrs: { id: "myCarousel" }
+                  },
+                  [
+                    _c("div", { staticClass: "carousel-inner" }, [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "item" }, [
+                        _c("img", {
+                          attrs: { src: "/" + _vm.product.image, alt: "" }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "left carousel-control",
+                        attrs: { href: "#myCarousel", "data-slide": "prev" }
+                      },
+                      [_vm._v("‹")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "right carousel-control",
+                        attrs: { href: "#myCarousel", "data-slide": "next" }
+                      },
+                      [_vm._v("›")]
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "span7" }, [
+                _c("h3", [_vm._v(_vm._s(_vm.product.name) + " [$140.00]")]),
+                _vm._v(" "),
+                _c("hr", { staticClass: "soft" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-horizontal qtyFrm" }, [
+                  _c("div", { staticClass: "control-group" }, [
+                    _c("label", { staticClass: "control-label" }, [
+                      _c("span", [_vm._v("TK :" + _vm._s(_vm.product.price))])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "controls" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.buyQuantity,
+                            expression: "buyQuantity"
+                          }
+                        ],
+                        staticClass: "span6",
+                        attrs: { type: "number", placeholder: "Qty." },
+                        domProps: { value: _vm.buyQuantity },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.buyQuantity = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("h4", [_vm._v("100 items in stock")]),
+                  _vm._v(" "),
+                  _c(
+                    "p",
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "shopBtn",
+                          attrs: {
+                            to: {
+                              name: "chackout-page",
+                              query: {
+                                product: _vm.product,
+                                quantity: _vm.buyQuantity
+                              }
+                            }
+                          }
+                        },
+                        [
+                          _c("span", { staticClass: " icon-shopping-cart" }),
+                          _vm._v("\n                                Buy Now")
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("hr", { staticClass: "softn clr" }),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "tab-content tabWrapper",
+                attrs: { id: "myTabContent" }
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "tab-pane fade active in",
+                    attrs: { id: "home" }
+                  },
+                  [
+                    _c("h4", [_vm._v("Product Information")]),
+                    _vm._v(" "),
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.product.description) +
+                          "\n                    "
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(5),
+                _vm._v(" "),
+                _vm._m(6),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "tab-pane fade", attrs: { id: "cat2" } },
+                  [
+                    _vm._m(7),
+                    _vm._v(" "),
+                    _c("hr", { staticClass: "soften" }),
+                    _vm._v(" "),
+                    _vm._m(8),
+                    _vm._v(" "),
+                    _c("hr", { staticClass: "soften" }),
+                    _vm._v(" "),
+                    _vm._m(9),
+                    _vm._v(" "),
+                    _c("hr", { staticClass: "soften" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row-fluid" }, [
+                      _vm._m(10),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "span6" }, [
+                        _c("h5", [_vm._v(_vm._s(_vm.product.name))]),
+                        _vm._v(" "),
+                        _c("p", [
+                          _vm._v(
+                            "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(11)
+                    ]),
+                    _vm._v(" "),
+                    _c("hr", { staticClass: "soften" })
+                  ]
+                )
+              ]
+            )
+          ])
+        ]
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "singlepage" } }, [
-      _c("div", { staticClass: "span9" }, [
-        _c(
-          "div",
-          {
-            staticClass: "singlepage",
-            staticStyle: { "margin-right": "-40px", "margin-left": "15px" }
-          },
-          [
-            _c("ul", { staticClass: "breadcrumb" }, [
-              _c("li", [
-                _c("a", { attrs: { href: "index.html" } }, [_vm._v("Home")]),
-                _vm._v(" "),
-                _c("span", { staticClass: "divider" }, [_vm._v("/")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "products.html" } }, [
-                  _vm._v("Items")
-                ]),
-                _vm._v(" "),
-                _c("span", { staticClass: "divider" }, [_vm._v("/")])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "active" }, [_vm._v("Preview")])
+    return _c("ul", { staticClass: "breadcrumb" }, [
+      _c("li", [
+        _c("a", { attrs: { href: "index.html" } }, [_vm._v("Home")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "divider" }, [_vm._v("/")])
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c("a", { attrs: { href: "products.html" } }, [_vm._v("Items")]),
+        _vm._v(" "),
+        _c("span", { staticClass: "divider" }, [_vm._v("/")])
+      ]),
+      _vm._v(" "),
+      _c("li", { staticClass: "active" }, [_vm._v("Preview")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "item active" }, [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("img", {
+          staticStyle: { width: "100%" },
+          attrs: { src: "https://picsum.photos/200/200", alt: "" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "item" }, [
+      _c("a", { attrs: { href: "#" } }, [
+        _c("img", {
+          staticStyle: { width: "100%" },
+          attrs: {
+            src: "https://loremflickr.com/g/320/240/paris,girl/all",
+            alt: ""
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "ul",
+      { staticClass: "nav nav-tabs", attrs: { id: "productDetail" } },
+      [
+        _c("li", { staticClass: "active" }, [
+          _c("a", { attrs: { href: "#home", "data-toggle": "tab" } }, [
+            _vm._v("Product Details")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", {}, [
+          _c("a", { attrs: { href: "#profile", "data-toggle": "tab" } }, [
+            _vm._v("Related Products\n                    ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("li", { staticClass: "dropdown" }, [
+          _c(
+            "a",
+            {
+              staticClass: "dropdown-toggle",
+              attrs: { href: "#", "data-toggle": "dropdown" }
+            },
+            [_vm._v("Acceseries "), _c("b", { staticClass: "caret" })]
+          ),
+          _vm._v(" "),
+          _c("ul", { staticClass: "dropdown-menu" }, [
+            _c("li", [
+              _c("a", { attrs: { href: "#cat1", "data-toggle": "tab" } }, [
+                _vm._v("Category one")
+              ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "well well-small" }, [
-              _c("div", { staticClass: "row-fluid" }, [
-                _c("div", { staticClass: "span5" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "carousel slide cntr",
-                      attrs: { id: "myCarousel" }
-                    },
-                    [
-                      _c("div", { staticClass: "carousel-inner" }, [
-                        _c("div", { staticClass: "item active" }, [
-                          _c("a", { attrs: { href: "#" } }, [
-                            _c("img", {
-                              staticStyle: { width: "100%" },
-                              attrs: {
-                                src: "https://picsum.photos/200/200",
-                                alt: ""
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "item" }, [
-                          _c("a", { attrs: { href: "#" } }, [
-                            _c("img", {
-                              staticStyle: { width: "100%" },
-                              attrs: {
-                                src:
-                                  "https://loremflickr.com/g/320/240/paris,girl/all",
-                                alt: ""
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "item" }, [
-                          _c("a", { attrs: { href: "#" } }, [
-                            _c("img", {
-                              staticStyle: { width: "100%" },
-                              attrs: {
-                                src: "https://picsum.photos/200/200",
-                                alt: ""
-                              }
-                            })
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "left carousel-control",
-                          attrs: { href: "#myCarousel", "data-slide": "prev" }
-                        },
-                        [_vm._v("‹")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "right carousel-control",
-                          attrs: { href: "#myCarousel", "data-slide": "next" }
-                        },
-                        [_vm._v("›")]
-                      )
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "span7" }, [
-                  _c("h3", [_vm._v("Name of the Item [$140.00]")]),
-                  _vm._v(" "),
-                  _c("hr", { staticClass: "soft" }),
-                  _vm._v(" "),
-                  _c("form", { staticClass: "form-horizontal qtyFrm" }, [
-                    _c("div", { staticClass: "control-group" }, [
-                      _c("label", { staticClass: "control-label" }, [
-                        _c("span", [_vm._v("$140.00")])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "controls" }, [
-                        _c("input", {
-                          staticClass: "span6",
-                          attrs: { type: "number", placeholder: "Qty." }
-                        })
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "control-group" }, [
-                      _c("label", { staticClass: "control-label" }, [
-                        _c("span", [_vm._v("Color")])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "controls" }, [
-                        _c("select", { staticClass: "span11" }, [
-                          _c("option", [_vm._v("Red")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Purple")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Pink")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Red")])
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "control-group" }, [
-                      _c("label", { staticClass: "control-label" }, [
-                        _c("span", [_vm._v("Materials")])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "controls" }, [
-                        _c("select", { staticClass: "span11" }, [
-                          _c("option", [_vm._v("Material 1")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Material 2")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Material 3")]),
-                          _vm._v(" "),
-                          _c("option", [_vm._v("Material 4")])
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("h4", [_vm._v("100 items in stock")]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _vm._v(
-                        "\n                            Nowadays the lingerie industry is one of the\n                            most successful business spheres. Nowadays the\n                            lingerie industry is one of ...\n                        "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("p", [
-                      _c(
-                        "button",
-                        { staticClass: "shopBtn", attrs: { type: "submit" } },
-                        [
-                          _c("span", { staticClass: " icon-shopping-cart" }),
-                          _vm._v(
-                            "\n                                Add to cart\n                            "
-                          )
-                        ]
-                      )
-                    ])
-                  ])
-                ])
+            _c("li", [
+              _c("a", { attrs: { href: "#cat2", "data-toggle": "tab" } }, [
+                _vm._v("Category two")
+              ])
+            ])
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("table", { staticClass: "table table-striped" }, [
+      _c("tbody", [
+        _c("tr", { staticClass: "techSpecRow" }, [
+          _c("td", { staticClass: "techSpecTD1" }, [_vm._v("Color:")]),
+          _vm._v(" "),
+          _c("td", { staticClass: "techSpecTD2" }, [_vm._v("Black")])
+        ]),
+        _vm._v(" "),
+        _c("tr", { staticClass: "techSpecRow" }, [
+          _c("td", { staticClass: "techSpecTD1" }, [_vm._v("Style:")]),
+          _vm._v(" "),
+          _c("td", { staticClass: "techSpecTD2" }, [_vm._v("Apparel,Sports")])
+        ]),
+        _vm._v(" "),
+        _c("tr", { staticClass: "techSpecRow" }, [
+          _c("td", { staticClass: "techSpecTD1" }, [_vm._v("Season:")]),
+          _vm._v(" "),
+          _c("td", { staticClass: "techSpecTD2" }, [_vm._v("spring/summer")])
+        ]),
+        _vm._v(" "),
+        _c("tr", { staticClass: "techSpecRow" }, [
+          _c("td", { staticClass: "techSpecTD1" }, [_vm._v("Usage:")]),
+          _vm._v(" "),
+          _c("td", { staticClass: "techSpecTD2" }, [_vm._v("fitness")])
+        ]),
+        _vm._v(" "),
+        _c("tr", { staticClass: "techSpecRow" }, [
+          _c("td", { staticClass: "techSpecTD1" }, [_vm._v("Sport:")]),
+          _vm._v(" "),
+          _c("td", { staticClass: "techSpecTD2" }, [_vm._v("122855031")])
+        ]),
+        _vm._v(" "),
+        _c("tr", { staticClass: "techSpecRow" }, [
+          _c("td", { staticClass: "techSpecTD1" }, [_vm._v("Brand:")]),
+          _vm._v(" "),
+          _c("td", { staticClass: "techSpecTD2" }, [_vm._v("Shock Absorber")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "tab-pane fade", attrs: { id: "profile" } },
+      [
+        _c("div", { staticClass: "row-fluid" }, [
+          _c("div", { staticClass: "span2" }, [
+            _c("img", {
+              attrs: {
+                src: "https://loremflickr.com/g/320/240/paris,girl/all",
+                alt: ""
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "span6" }, [
+            _c("h5", [_vm._v("Product Name")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "span4 alignR" }, [
+            _c("form", { staticClass: "form-horizontal qtyFrm" }, [
+              _c("h3", [_vm._v("$140.00")]),
+              _vm._v(" "),
+              _c("label", { staticClass: "checkbox" }, [
+                _c("input", { attrs: { type: "checkbox" } }),
+                _vm._v(
+                  " Adds product\n                                    to compair "
+                )
               ]),
+              _c("br"),
               _vm._v(" "),
-              _c("hr", { staticClass: "softn clr" }),
+              _c("div", { staticClass: "btn-group" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "defaultBtn",
+                    attrs: { href: "product_details.html" }
+                  },
+                  [
+                    _c("span", { staticClass: " icon-shopping-cart" }),
+                    _vm._v(
+                      "\n                                        Add to cart"
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "shopBtn",
+                    attrs: { href: "product_details.html" }
+                  },
+                  [_vm._v("VIEW")]
+                )
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr", { staticClass: "soft" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "row-fluid" }, [
+          _c("div", { staticClass: "span2" }, [
+            _c("img", {
+              attrs: { src: "https://picsum.photos/200/200", alt: "" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "span6" }, [
+            _c("h5", [_vm._v("Product Name")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "span4 alignR" }, [
+            _c("form", { staticClass: "form-horizontal qtyFrm" }, [
+              _c("h3", [_vm._v("$140.00")]),
               _vm._v(" "),
+              _c("label", { staticClass: "checkbox" }, [
+                _c("input", { attrs: { type: "checkbox" } }),
+                _vm._v(
+                  " Adds product\n                                    to compair "
+                )
+              ]),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "btn-group" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "defaultBtn",
+                    attrs: { href: "product_details.html" }
+                  },
+                  [
+                    _c("span", { staticClass: " icon-shopping-cart" }),
+                    _vm._v(
+                      "\n                                        Add to cart"
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "shopBtn",
+                    attrs: { href: "product_details.html" }
+                  },
+                  [_vm._v("VIEW")]
+                )
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr", { staticClass: "soft" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "row-fluid" }, [
+          _c("div", { staticClass: "span2" }, [
+            _c("img", {
+              attrs: {
+                src: "https://loremflickr.com/g/320/240/paris,girl/all",
+                alt: ""
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "span6" }, [
+            _c("h5", [_vm._v("Product Name")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "span4 alignR" }, [
+            _c("form", { staticClass: "form-horizontal qtyFrm" }, [
+              _c("h3", [_vm._v("$140.00")]),
+              _vm._v(" "),
+              _c("label", { staticClass: "checkbox" }, [
+                _c("input", { attrs: { type: "checkbox" } }),
+                _vm._v(
+                  " Adds product\n                                    to compair "
+                )
+              ]),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "btn-group" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "defaultBtn",
+                    attrs: { href: "product_details.html" }
+                  },
+                  [
+                    _c("span", { staticClass: " icon-shopping-cart" }),
+                    _vm._v(
+                      "\n                                        Add to cart"
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "shopBtn",
+                    attrs: { href: "product_details.html" }
+                  },
+                  [_vm._v("VIEW")]
+                )
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr", { staticClass: "soft" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "row-fluid" }, [
+          _c("div", { staticClass: "span2" }, [
+            _c("img", {
+              attrs: {
+                src: "https://loremflickr.com/g/320/240/paris,girl/all",
+                alt: ""
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "span6" }, [
+            _c("h5", [_vm._v("Product Name")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "span4 alignR" }, [
+            _c("form", { staticClass: "form-horizontal qtyFrm" }, [
+              _c("h3", [_vm._v("$140.00")]),
+              _vm._v(" "),
+              _c("label", { staticClass: "checkbox" }, [
+                _c("input", { attrs: { type: "checkbox" } }),
+                _vm._v(
+                  " Adds product\n                                    to compair "
+                )
+              ]),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "btn-group" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "defaultBtn",
+                    attrs: { href: "product_details.html" }
+                  },
+                  [
+                    _c("span", { staticClass: " icon-shopping-cart" }),
+                    _vm._v(
+                      "\n                                        Add to cart"
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "shopBtn",
+                    attrs: { href: "product_details.html" }
+                  },
+                  [_vm._v("VIEW")]
+                )
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("hr", { staticClass: "soften" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "row-fluid" }, [
+          _c("div", { staticClass: "span2" }, [
+            _c("img", {
+              attrs: {
+                src: "https://loremflickr.com/g/320/240/paris,girl/all",
+                alt: ""
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "span6" }, [
+            _c("h5", [_vm._v("Product Name")]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v(
+                "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "span4 alignR" }, [
+            _c("form", { staticClass: "form-horizontal qtyFrm" }, [
+              _c("h3", [_vm._v("$140.00")]),
+              _vm._v(" "),
+              _c("label", { staticClass: "checkbox" }, [
+                _c("input", { attrs: { type: "checkbox" } }),
+                _vm._v(
+                  " Adds product\n                                    to compair "
+                )
+              ]),
+              _c("br"),
+              _vm._v(" "),
+              _c("div", { staticClass: "btn-group" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "defaultBtn",
+                    attrs: { href: "product_details.html" }
+                  },
+                  [
+                    _c("span", { staticClass: " icon-shopping-cart" }),
+                    _vm._v(
+                      "\n                                        Add to cart"
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "shopBtn",
+                    attrs: { href: "product_details.html" }
+                  },
+                  [_vm._v("VIEW")]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "tab-pane fade", attrs: { id: "cat1" } }, [
+      _c("p", [
+        _vm._v(
+          "\n                        Etsy mixtape wayfarers, ethical wes anderson tofu\n                        before they sold out mcsweeney's organic lomo retro\n                        fanny pack lo-fi farm-to-table readymade. Messenger\n                        bag gentrify pitchfork tattooed craft beer, iphone\n                        skateboard locavore carles etsy salvia banksy hoodie\n                        helvetica. DIY synth PBR banksy irony. Leggings\n                        gentrify squid 8-bit cred pitchfork. Williamsburg\n                        banh mi whatever gluten-free, carles pitchfork\n                        biodiesel fixie etsy retro mlkshk vice blog.\n                        Scenester cred you probably haven't heard of them,\n                        vinyl craft beer blog stumptown. Pitchfork\n                        sustainable tofu synth chambray yr.\n                    "
+        )
+      ]),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("div", { staticClass: "row-fluid" }, [
+        _c("div", { staticClass: "span2" }, [
+          _c("img", {
+            attrs: {
+              src: "https://loremflickr.com/g/320/240/paris,girl/all",
+              alt: ""
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "span6" }, [
+          _c("h5", [_vm._v("Product Name")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "span4 alignR" }, [
+          _c("form", { staticClass: "form-horizontal qtyFrm" }, [
+            _c("h3", [_vm._v("$140.00")]),
+            _vm._v(" "),
+            _c("label", { staticClass: "checkbox" }, [
+              _c("input", { attrs: { type: "checkbox" } }),
+              _vm._v(
+                " Adds product\n                                    to compair "
+              )
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "btn-group" }, [
               _c(
-                "ul",
-                { staticClass: "nav nav-tabs", attrs: { id: "productDetail" } },
+                "a",
+                {
+                  staticClass: "defaultBtn",
+                  attrs: { href: "product_details.html" }
+                },
                 [
-                  _c("li", { staticClass: "active" }, [
-                    _c(
-                      "a",
-                      { attrs: { href: "#home", "data-toggle": "tab" } },
-                      [_vm._v("Product Details")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", {}, [
-                    _c(
-                      "a",
-                      { attrs: { href: "#profile", "data-toggle": "tab" } },
-                      [_vm._v("Related Products\n                    ")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "dropdown" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "dropdown-toggle",
-                        attrs: { href: "#", "data-toggle": "dropdown" }
-                      },
-                      [_vm._v("Acceseries "), _c("b", { staticClass: "caret" })]
-                    ),
-                    _vm._v(" "),
-                    _c("ul", { staticClass: "dropdown-menu" }, [
-                      _c("li", [
-                        _c(
-                          "a",
-                          { attrs: { href: "#cat1", "data-toggle": "tab" } },
-                          [_vm._v("Category one")]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("li", [
-                        _c(
-                          "a",
-                          { attrs: { href: "#cat2", "data-toggle": "tab" } },
-                          [_vm._v("Category two")]
-                        )
-                      ])
-                    ])
-                  ])
+                  _c("span", { staticClass: " icon-shopping-cart" }),
+                  _vm._v(
+                    "\n                                        Add to cart"
+                  )
                 ]
               ),
               _vm._v(" "),
               _c(
-                "div",
+                "a",
                 {
-                  staticClass: "tab-content tabWrapper",
-                  attrs: { id: "myTabContent" }
+                  staticClass: "shopBtn",
+                  attrs: { href: "product_details.html" }
                 },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "tab-pane fade active in",
-                      attrs: { id: "home" }
-                    },
-                    [
-                      _c("h4", [_vm._v("Product Information")]),
-                      _vm._v(" "),
-                      _c("table", { staticClass: "table table-striped" }, [
-                        _c("tbody", [
-                          _c("tr", { staticClass: "techSpecRow" }, [
-                            _c("td", { staticClass: "techSpecTD1" }, [
-                              _vm._v("Color:")
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "techSpecTD2" }, [
-                              _vm._v("Black")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", { staticClass: "techSpecRow" }, [
-                            _c("td", { staticClass: "techSpecTD1" }, [
-                              _vm._v("Style:")
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "techSpecTD2" }, [
-                              _vm._v("Apparel,Sports")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", { staticClass: "techSpecRow" }, [
-                            _c("td", { staticClass: "techSpecTD1" }, [
-                              _vm._v("Season:")
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "techSpecTD2" }, [
-                              _vm._v("spring/summer")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", { staticClass: "techSpecRow" }, [
-                            _c("td", { staticClass: "techSpecTD1" }, [
-                              _vm._v("Usage:")
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "techSpecTD2" }, [
-                              _vm._v("fitness")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", { staticClass: "techSpecRow" }, [
-                            _c("td", { staticClass: "techSpecTD1" }, [
-                              _vm._v("Sport:")
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "techSpecTD2" }, [
-                              _vm._v("122855031")
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("tr", { staticClass: "techSpecRow" }, [
-                            _c("td", { staticClass: "techSpecTD1" }, [
-                              _vm._v("Brand:")
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "techSpecTD2" }, [
-                              _vm._v("Shock Absorber")
-                            ])
-                          ])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                        Raw denim you probably haven't heard of them jean\n                        shorts Austin. Nesciunt tofu stumptown aliqua, retro\n                        synth master cleanse. Mustache cliche tempor,\n                        williamsburg carles vegan helvetica. Reprehenderit\n                        butcher retro keffiyeh dreamcatcher synth. Cosby\n                        sweater eu banh mi, qui irure terry richardson ex\n                        squid. Aliquip placeat salvia cillum iphone. Seitan\n                        aliquip quis cardigan american apparel, butcher\n                        voluptate nisi qui.\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                        Raw denim you probably haven't heard of them jean\n                        shorts Austin. Nesciunt tofu stumptown aliqua, retro\n                        synth master cleanse. Mustache cliche tempor,\n                        williamsburg carles vegan helvetica. Reprehenderit\n                        butcher retro keffiyeh dreamcatcher synth. Cosby\n                        sweater eu banh mi, qui irure terry richardson ex\n                        squid. Aliquip placeat salvia cillum iphone. Seitan\n                        aliquip quis cardigan american apparel, butcher\n                        voluptate nisi qui.\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                        Raw denim you probably haven't heard of them jean\n                        shorts Austin. Nesciunt tofu stumptown aliqua, retro\n                        synth master cleanse. Mustache cliche tempor,\n                        williamsburg carles vegan helvetica. Reprehenderit\n                        butcher retro keffiyeh dreamcatcher synth. Cosby\n                        sweater eu banh mi, qui irure terry richardson ex\n                        squid. Aliquip placeat salvia cillum iphone. Seitan\n                        aliquip quis cardigan american apparel, butcher\n                        voluptate nisi qui.\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                        Raw denim you probably haven't heard of them jean\n                        shorts Austin. Nesciunt tofu stumptown aliqua, retro\n                        synth master cleanse. Mustache cliche tempor,\n                        williamsburg carles vegan helvetica. Reprehenderit\n                        butcher retro keffiyeh dreamcatcher synth. Cosby\n                        sweater eu banh mi, qui irure terry richardson ex\n                        squid. Aliquip placeat salvia cillum iphone. Seitan\n                        aliquip quis cardigan american apparel, butcher\n                        voluptate nisi qui.\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                        Raw denim you probably haven't heard of them jean\n                        shorts Austin. Nesciunt tofu stumptown aliqua, retro\n                        synth master cleanse. Mustache cliche tempor,\n                        williamsburg carles vegan helvetica. Reprehenderit\n                        butcher retro keffiyeh dreamcatcher synth. Cosby\n                        sweater eu banh mi, qui irure terry richardson ex\n                        squid. Aliquip placeat salvia cillum iphone. Seitan\n                        aliquip quis cardigan american apparel, butcher\n                        voluptate nisi qui.\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                        Raw denim you probably haven't heard of them jean\n                        shorts Austin. Nesciunt tofu stumptown aliqua, retro\n                        synth master cleanse. Mustache cliche tempor,\n                        williamsburg carles vegan helvetica. Reprehenderit\n                        butcher retro keffiyeh dreamcatcher synth. Cosby\n                        sweater eu banh mi, qui irure terry richardson ex\n                        squid. Aliquip placeat salvia cillum iphone. Seitan\n                        aliquip quis cardigan american apparel, butcher\n                        voluptate nisi qui.\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                        Raw denim you probably haven't heard of them jean\n                        shorts Austin. Nesciunt tofu stumptown aliqua, retro\n                        synth master cleanse. Mustache cliche tempor,\n                        williamsburg carles vegan helvetica. Reprehenderit\n                        butcher retro keffiyeh dreamcatcher synth. Cosby\n                        sweater eu banh mi, qui irure terry richardson ex\n                        squid. Aliquip placeat salvia cillum iphone. Seitan\n                        aliquip quis cardigan american apparel, butcher\n                        voluptate nisi qui.\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "\n                        Raw denim you probably haven't heard of them jean\n                        shorts Austin. Nesciunt tofu stumptown aliqua, retro\n                        synth master cleanse. Mustache cliche tempor,\n                        williamsburg carles vegan helvetica. Reprehenderit\n                        butcher retro keffiyeh dreamcatcher synth. Cosby\n                        sweater eu banh mi, qui irure terry richardson ex\n                        squid. Aliquip placeat salvia cillum iphone. Seitan\n                        aliquip quis cardigan american apparel, butcher\n                        voluptate nisi qui.\n                    "
-                        )
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "tab-pane fade", attrs: { id: "profile" } },
-                    [
-                      _c("div", { staticClass: "row-fluid" }, [
-                        _c("div", { staticClass: "span2" }, [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "https://loremflickr.com/g/320/240/paris,girl/all",
-                              alt: ""
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span6" }, [
-                          _c("h5", [_vm._v("Product Name")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span4 alignR" }, [
-                          _c(
-                            "form",
-                            { staticClass: "form-horizontal qtyFrm" },
-                            [
-                              _c("h3", [_vm._v("$140.00")]),
-                              _vm._v(" "),
-                              _c("label", { staticClass: "checkbox" }, [
-                                _c("input", { attrs: { type: "checkbox" } }),
-                                _vm._v(
-                                  " Adds product\n                                    to compair "
-                                )
-                              ]),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "btn-group" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "defaultBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass: " icon-shopping-cart"
-                                    }),
-                                    _vm._v(
-                                      "\n                                        Add to cart"
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "shopBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [_vm._v("VIEW")]
-                                )
-                              ])
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("hr", { staticClass: "soft" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row-fluid" }, [
-                        _c("div", { staticClass: "span2" }, [
-                          _c("img", {
-                            attrs: {
-                              src: "https://picsum.photos/200/200",
-                              alt: ""
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span6" }, [
-                          _c("h5", [_vm._v("Product Name")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span4 alignR" }, [
-                          _c(
-                            "form",
-                            { staticClass: "form-horizontal qtyFrm" },
-                            [
-                              _c("h3", [_vm._v("$140.00")]),
-                              _vm._v(" "),
-                              _c("label", { staticClass: "checkbox" }, [
-                                _c("input", { attrs: { type: "checkbox" } }),
-                                _vm._v(
-                                  " Adds product\n                                    to compair "
-                                )
-                              ]),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "btn-group" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "defaultBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass: " icon-shopping-cart"
-                                    }),
-                                    _vm._v(
-                                      "\n                                        Add to cart"
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "shopBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [_vm._v("VIEW")]
-                                )
-                              ])
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("hr", { staticClass: "soft" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row-fluid" }, [
-                        _c("div", { staticClass: "span2" }, [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "https://loremflickr.com/g/320/240/paris,girl/all",
-                              alt: ""
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span6" }, [
-                          _c("h5", [_vm._v("Product Name")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span4 alignR" }, [
-                          _c(
-                            "form",
-                            { staticClass: "form-horizontal qtyFrm" },
-                            [
-                              _c("h3", [_vm._v("$140.00")]),
-                              _vm._v(" "),
-                              _c("label", { staticClass: "checkbox" }, [
-                                _c("input", { attrs: { type: "checkbox" } }),
-                                _vm._v(
-                                  " Adds product\n                                    to compair "
-                                )
-                              ]),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "btn-group" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "defaultBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass: " icon-shopping-cart"
-                                    }),
-                                    _vm._v(
-                                      "\n                                        Add to cart"
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "shopBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [_vm._v("VIEW")]
-                                )
-                              ])
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("hr", { staticClass: "soft" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row-fluid" }, [
-                        _c("div", { staticClass: "span2" }, [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "https://loremflickr.com/g/320/240/paris,girl/all",
-                              alt: ""
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span6" }, [
-                          _c("h5", [_vm._v("Product Name")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span4 alignR" }, [
-                          _c(
-                            "form",
-                            { staticClass: "form-horizontal qtyFrm" },
-                            [
-                              _c("h3", [_vm._v("$140.00")]),
-                              _vm._v(" "),
-                              _c("label", { staticClass: "checkbox" }, [
-                                _c("input", { attrs: { type: "checkbox" } }),
-                                _vm._v(
-                                  " Adds product\n                                    to compair "
-                                )
-                              ]),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "btn-group" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "defaultBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass: " icon-shopping-cart"
-                                    }),
-                                    _vm._v(
-                                      "\n                                        Add to cart"
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "shopBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [_vm._v("VIEW")]
-                                )
-                              ])
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("hr", { staticClass: "soften" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row-fluid" }, [
-                        _c("div", { staticClass: "span2" }, [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "https://loremflickr.com/g/320/240/paris,girl/all",
-                              alt: ""
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span6" }, [
-                          _c("h5", [_vm._v("Product Name")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span4 alignR" }, [
-                          _c(
-                            "form",
-                            { staticClass: "form-horizontal qtyFrm" },
-                            [
-                              _c("h3", [_vm._v("$140.00")]),
-                              _vm._v(" "),
-                              _c("label", { staticClass: "checkbox" }, [
-                                _c("input", { attrs: { type: "checkbox" } }),
-                                _vm._v(
-                                  " Adds product\n                                    to compair "
-                                )
-                              ]),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "btn-group" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "defaultBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass: " icon-shopping-cart"
-                                    }),
-                                    _vm._v(
-                                      "\n                                        Add to cart"
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "shopBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [_vm._v("VIEW")]
-                                )
-                              ])
-                            ]
-                          )
-                        ])
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "tab-pane fade", attrs: { id: "cat1" } },
-                    [
-                      _c("p", [
-                        _vm._v(
-                          "\n                        Etsy mixtape wayfarers, ethical wes anderson tofu\n                        before they sold out mcsweeney's organic lomo retro\n                        fanny pack lo-fi farm-to-table readymade. Messenger\n                        bag gentrify pitchfork tattooed craft beer, iphone\n                        skateboard locavore carles etsy salvia banksy hoodie\n                        helvetica. DIY synth PBR banksy irony. Leggings\n                        gentrify squid 8-bit cred pitchfork. Williamsburg\n                        banh mi whatever gluten-free, carles pitchfork\n                        biodiesel fixie etsy retro mlkshk vice blog.\n                        Scenester cred you probably haven't heard of them,\n                        vinyl craft beer blog stumptown. Pitchfork\n                        sustainable tofu synth chambray yr.\n                    "
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row-fluid" }, [
-                        _c("div", { staticClass: "span2" }, [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "https://loremflickr.com/g/320/240/paris,girl/all",
-                              alt: ""
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span6" }, [
-                          _c("h5", [_vm._v("Product Name")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span4 alignR" }, [
-                          _c(
-                            "form",
-                            { staticClass: "form-horizontal qtyFrm" },
-                            [
-                              _c("h3", [_vm._v("$140.00")]),
-                              _vm._v(" "),
-                              _c("label", { staticClass: "checkbox" }, [
-                                _c("input", { attrs: { type: "checkbox" } }),
-                                _vm._v(
-                                  " Adds product\n                                    to compair "
-                                )
-                              ]),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "btn-group" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "defaultBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass: " icon-shopping-cart"
-                                    }),
-                                    _vm._v(
-                                      "\n                                        Add to cart"
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "shopBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [_vm._v("VIEW")]
-                                )
-                              ])
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("hr", { staticClass: "soften" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row-fluid" }, [
-                        _c("div", { staticClass: "span2" }, [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "https://loremflickr.com/g/320/240/paris,girl/all",
-                              alt: ""
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span6" }, [
-                          _c("h5", [_vm._v("Product Name")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span4 alignR" }, [
-                          _c(
-                            "form",
-                            { staticClass: "form-horizontal qtyFrm" },
-                            [
-                              _c("h3", [_vm._v("$140.00")]),
-                              _vm._v(" "),
-                              _c("label", { staticClass: "checkbox" }, [
-                                _c("input", { attrs: { type: "checkbox" } }),
-                                _vm._v(
-                                  " Adds product\n                                    to compair "
-                                )
-                              ]),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "btn-group" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "defaultBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass: " icon-shopping-cart"
-                                    }),
-                                    _vm._v(
-                                      "\n                                        Add to cart"
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "shopBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [_vm._v("VIEW")]
-                                )
-                              ])
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("hr", { staticClass: "soften" })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "tab-pane fade", attrs: { id: "cat2" } },
-                    [
-                      _c("div", { staticClass: "row-fluid" }, [
-                        _c("div", { staticClass: "span2" }, [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "https://loremflickr.com/g/320/240/paris,girl/all",
-                              alt: ""
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span6" }, [
-                          _c("h5", [_vm._v("Product Name")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span4 alignR" }, [
-                          _c(
-                            "form",
-                            { staticClass: "form-horizontal qtyFrm" },
-                            [
-                              _c("h3", [_vm._v("$140.00")]),
-                              _vm._v(" "),
-                              _c("label", { staticClass: "checkbox" }, [
-                                _c("input", { attrs: { type: "checkbox" } }),
-                                _vm._v(
-                                  " Adds product\n                                    to compair "
-                                )
-                              ]),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "btn-group" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "defaultBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass: " icon-shopping-cart"
-                                    }),
-                                    _vm._v(
-                                      "\n                                        Add to cart"
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "shopBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [_vm._v("VIEW")]
-                                )
-                              ])
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("hr", { staticClass: "soften" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row-fluid" }, [
-                        _c("div", { staticClass: "span2" }, [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "https://loremflickr.com/g/320/240/paris,girl/all",
-                              alt: ""
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span6" }, [
-                          _c("h5", [_vm._v("Product Name")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span4 alignR" }, [
-                          _c(
-                            "form",
-                            { staticClass: "form-horizontal qtyFrm" },
-                            [
-                              _c("h3", [_vm._v("$140.00")]),
-                              _vm._v(" "),
-                              _c("label", { staticClass: "checkbox" }, [
-                                _c("input", { attrs: { type: "checkbox" } }),
-                                _vm._v(
-                                  " Adds product\n                                    to compair "
-                                )
-                              ]),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "btn-group" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "defaultBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass: " icon-shopping-cart"
-                                    }),
-                                    _vm._v(
-                                      "\n                                        Add to cart"
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "shopBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [_vm._v("VIEW")]
-                                )
-                              ])
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("hr", { staticClass: "soften" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row-fluid" }, [
-                        _c("div", { staticClass: "span2" }, [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "https://loremflickr.com/g/320/240/paris,girl/all",
-                              alt: ""
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span6" }, [
-                          _c("h5", [_vm._v("Product Name")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span4 alignR" }, [
-                          _c(
-                            "form",
-                            { staticClass: "form-horizontal qtyFrm" },
-                            [
-                              _c("h3", [_vm._v("$140.00")]),
-                              _vm._v(" "),
-                              _c("label", { staticClass: "checkbox" }, [
-                                _c("input", { attrs: { type: "checkbox" } }),
-                                _vm._v(
-                                  " Adds product\n                                    to compair "
-                                )
-                              ]),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "btn-group" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "defaultBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass: " icon-shopping-cart"
-                                    }),
-                                    _vm._v(
-                                      "\n                                        Add to cart"
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "shopBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [_vm._v("VIEW")]
-                                )
-                              ])
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("hr", { staticClass: "soften" }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row-fluid" }, [
-                        _c("div", { staticClass: "span2" }, [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "https://loremflickr.com/g/320/240/paris,girl/all",
-                              alt: ""
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span6" }, [
-                          _c("h5", [_vm._v("Product Name")]),
-                          _vm._v(" "),
-                          _c("p", [
-                            _vm._v(
-                              "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span4 alignR" }, [
-                          _c(
-                            "form",
-                            { staticClass: "form-horizontal qtyFrm" },
-                            [
-                              _c("h3", [_vm._v("$140.00")]),
-                              _vm._v(" "),
-                              _c("label", { staticClass: "checkbox" }, [
-                                _c("input", { attrs: { type: "checkbox" } }),
-                                _vm._v(
-                                  " Adds product\n                                    to compair "
-                                )
-                              ]),
-                              _c("br"),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "btn-group" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "defaultBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [
-                                    _c("span", {
-                                      staticClass: " icon-shopping-cart"
-                                    }),
-                                    _vm._v(
-                                      "\n                                        Add to cart"
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "shopBtn",
-                                    attrs: { href: "product_details.html" }
-                                  },
-                                  [_vm._v("VIEW")]
-                                )
-                              ])
-                            ]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("hr", { staticClass: "soften" })
-                    ]
-                  )
-                ]
+                [_vm._v("VIEW")]
               )
             ])
-          ]
-        )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("hr", { staticClass: "soften" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "row-fluid" }, [
+        _c("div", { staticClass: "span2" }, [
+          _c("img", {
+            attrs: {
+              src: "https://loremflickr.com/g/320/240/paris,girl/all",
+              alt: ""
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "span6" }, [
+          _c("h5", [_vm._v("Product Name")]),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "span4 alignR" }, [
+          _c("form", { staticClass: "form-horizontal qtyFrm" }, [
+            _c("h3", [_vm._v("$140.00")]),
+            _vm._v(" "),
+            _c("label", { staticClass: "checkbox" }, [
+              _c("input", { attrs: { type: "checkbox" } }),
+              _vm._v(
+                " Adds product\n                                    to compair "
+              )
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "btn-group" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "defaultBtn",
+                  attrs: { href: "product_details.html" }
+                },
+                [
+                  _c("span", { staticClass: " icon-shopping-cart" }),
+                  _vm._v(
+                    "\n                                        Add to cart"
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "shopBtn",
+                  attrs: { href: "product_details.html" }
+                },
+                [_vm._v("VIEW")]
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("hr", { staticClass: "soften" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row-fluid" }, [
+      _c("div", { staticClass: "span2" }, [
+        _c("img", {
+          attrs: {
+            src: "https://loremflickr.com/g/320/240/paris,girl/all",
+            alt: ""
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "span6" }, [
+        _c("h5", [_vm._v("Product Name")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "span4 alignR" }, [
+        _c("form", { staticClass: "form-horizontal qtyFrm" }, [
+          _c("h3", [_vm._v("$140.00")]),
+          _vm._v(" "),
+          _c("label", { staticClass: "checkbox" }, [
+            _c("input", { attrs: { type: "checkbox" } }),
+            _vm._v(
+              " Adds product\n                                    to compair "
+            )
+          ]),
+          _c("br"),
+          _vm._v(" "),
+          _c("div", { staticClass: "btn-group" }, [
+            _c(
+              "a",
+              {
+                staticClass: "defaultBtn",
+                attrs: { href: "product_details.html" }
+              },
+              [
+                _c("span", { staticClass: " icon-shopping-cart" }),
+                _vm._v("\n                                        Add to cart")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "shopBtn",
+                attrs: { href: "product_details.html" }
+              },
+              [_vm._v("VIEW")]
+            )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row-fluid" }, [
+      _c("div", { staticClass: "span2" }, [
+        _c("img", {
+          attrs: {
+            src: "https://loremflickr.com/g/320/240/paris,girl/all",
+            alt: ""
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "span6" }, [
+        _c("h5", [_vm._v("Product Name")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "span4 alignR" }, [
+        _c("form", { staticClass: "form-horizontal qtyFrm" }, [
+          _c("h3", [_vm._v("$140.00")]),
+          _vm._v(" "),
+          _c("label", { staticClass: "checkbox" }, [
+            _c("input", { attrs: { type: "checkbox" } }),
+            _vm._v(
+              " Adds product\n                                    to compair "
+            )
+          ]),
+          _c("br"),
+          _vm._v(" "),
+          _c("div", { staticClass: "btn-group" }, [
+            _c(
+              "a",
+              {
+                staticClass: "defaultBtn",
+                attrs: { href: "product_details.html" }
+              },
+              [
+                _c("span", { staticClass: " icon-shopping-cart" }),
+                _vm._v("\n                                        Add to cart")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "shopBtn",
+                attrs: { href: "product_details.html" }
+              },
+              [_vm._v("VIEW")]
+            )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row-fluid" }, [
+      _c("div", { staticClass: "span2" }, [
+        _c("img", {
+          attrs: {
+            src: "https://loremflickr.com/g/320/240/paris,girl/all",
+            alt: ""
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "span6" }, [
+        _c("h5", [_vm._v("Product Name")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "\n                                Nowadays the lingerie industry is one of the\n                                most successful business spheres. We always\n                                stay in touch with the latest fashion\n                                tendencies - that is why our goods are so\n                                popular..\n                            "
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "span4 alignR" }, [
+        _c("form", { staticClass: "form-horizontal qtyFrm" }, [
+          _c("h3", [_vm._v("$140.00")]),
+          _vm._v(" "),
+          _c("label", { staticClass: "checkbox" }, [
+            _c("input", { attrs: { type: "checkbox" } }),
+            _vm._v(
+              " Adds product\n                                    to compair "
+            )
+          ]),
+          _c("br"),
+          _vm._v(" "),
+          _c("div", { staticClass: "btn-group" }, [
+            _c(
+              "a",
+              {
+                staticClass: "defaultBtn",
+                attrs: { href: "product_details.html" }
+              },
+              [
+                _c("span", { staticClass: " icon-shopping-cart" }),
+                _vm._v("\n                                        Add to cart")
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "shopBtn",
+                attrs: { href: "product_details.html" }
+              },
+              [_vm._v("VIEW")]
+            )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "span2" }, [
+      _c("img", {
+        attrs: {
+          src: "https://loremflickr.com/g/320/240/paris,girl/all",
+          alt: ""
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "span4 alignR" }, [
+      _c("form", { staticClass: "form-horizontal qtyFrm" }, [
+        _c("h3", [_vm._v("$140.00")]),
+        _vm._v(" "),
+        _c("label", { staticClass: "checkbox" }, [
+          _c("input", { attrs: { type: "checkbox" } }),
+          _vm._v(
+            " Adds product\n                                    to compair "
+          )
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("div", { staticClass: "btn-group" }, [
+          _c(
+            "a",
+            {
+              staticClass: "defaultBtn",
+              attrs: { href: "product_details.html" }
+            },
+            [
+              _c("span", { staticClass: " icon-shopping-cart" }),
+              _vm._v("\n                                        Add to cart")
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            { staticClass: "shopBtn", attrs: { href: "product_details.html" } },
+            [_vm._v("VIEW")]
+          )
+        ])
       ])
     ])
   }
@@ -22720,7 +22523,11 @@ var routes = [{
   'component': _pages_ProductPage__WEBPACK_IMPORTED_MODULE_2__.default
 }, {
   'name': 'chackout-page',
-  'path': '/chackout/:slug',
+  'path': '/chackout',
+  'params': {
+    product: null,
+    quentity: null
+  },
   'component': _pages_Chackout__WEBPACK_IMPORTED_MODULE_3__.default
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__.default({

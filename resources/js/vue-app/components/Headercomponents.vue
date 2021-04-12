@@ -19,7 +19,7 @@
                 <div class="span4 alignR">
                     <p><br> <strong> Support (24/7) : 0800 1234 678 </strong><br><br></p>
                     <router-link :to="{name:'chackout-page'}"><span class="btn btn-mini">[ 2 ] <span class="icon-shopping-cart"></span></span></router-link>
-                    
+
                     <span class="btn btn-warning btn-mini">$</span>
                     <span class="btn btn-mini">&pound;</span>
                     <span class="btn btn-mini">&euro;</span>

@@ -29,17 +29,17 @@
 #singlepage {
     margin-left: 40px;
 }
-   
+
             .thumbnail img {
             max-width: 100%;
             min-height: 200px;
             max-height: 200px;
         }
-        
+
   </style>
 
     <div id="vueApp">
-       
+
     </div>
 
 

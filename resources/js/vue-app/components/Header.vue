@@ -39,6 +39,6 @@
 import HeaderComponent from './Headercomponents';
 import HeaderNavbar from './Headernavbar';
 export default {
-    components:{HeaderComponent,HeaderNavbar}    
+    components:{HeaderComponent,HeaderNavbar}
 }
 </script>
