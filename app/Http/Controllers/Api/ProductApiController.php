@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Product;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\VarDumper\Cloner\Data;
 
 class ProductApiController extends Controller
@@ -56,7 +58,7 @@ class ProductApiController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -67,7 +69,23 @@ class ProductApiController extends Controller
      */
     public function store(Request $request)
     {
-        return response()->json($request->all());
+        $product_name = Product::find($request->product_id);
+        try {
+            Order::create([
+                'product_name'=>$product_name->name,
+                'product_id' =>$request->product_id,
+                'quantity' => $request->quantity,
+                'total' =>$request->total,
+                'customer_name'=>$request->shipping_address['customer_name'],
+                'customer_email'=>$request->shipping_address['customer_email'],
+                'customer_mobile_no'=>$request->shipping_address['customer_mobile_no'],
+                'customer_address'=>$request->shipping_address['customer_address']
+            ]);
+            return $this->ApijsonSuccess('Order Complete');
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+        }
+
     }
 
     /**
