@@ -153,14 +153,16 @@ export default {
     methods: {
 
         async PlaceOrder(){
-            try {
+
                 const Orderdata = this.getOrderdata();
             const orderurl = 'http://localhost:8000/api/v1/product';
             const createdata = await Axios.post(orderurl, Orderdata);
-            console.log(createdata.data);
-            } catch (error) {
-                console.log(error);
+            if (!createdata) {
+                this.$router.push({name:'checkout-failure'})
+            }else{
+                this.$router.push({name:'checkout-success'})
             }
+
 
         },
         getOrderdata(){

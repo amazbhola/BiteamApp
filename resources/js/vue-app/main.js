@@ -4,6 +4,8 @@ import App from './App';
 import HomePage from './pages/Homepage';
 import ProductPage from './pages/ProductPage';
 import ChackoutPage from './pages/Chackout';
+import CheckoutSuccess from './pages/CheckoutSuccess';
+import CheckoutFailure from './pages/CheckoutFailure';
 Vue.use(VueRouter);
 const routes = [
    {
@@ -24,6 +26,16 @@ const routes = [
           quentity:null
       },
       'component':ChackoutPage
+   },
+   {
+      'name':'checkout-success',
+      'path':'/checkout/success',
+      'component':CheckoutSuccess
+   },
+   {
+      'name':'checkout-failure',
+      'path':'/checkout/failure',
+      'component':CheckoutFailure
    }
 ];
 const router = new VueRouter(
