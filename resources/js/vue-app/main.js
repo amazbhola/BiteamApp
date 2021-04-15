@@ -6,6 +6,11 @@ import ProductPage from './pages/ProductPage';
 import ChackoutPage from './pages/Chackout';
 import CheckoutSuccess from './pages/CheckoutSuccess';
 import CheckoutFailure from './pages/CheckoutFailure';
+import Vuelidate from 'vuelidate';
+import Vuex from 'vuex';
+
+Vue.use(Vuelidate);
+Vue.use(Vuex)
 Vue.use(VueRouter);
 const routes = [
    {
