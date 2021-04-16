@@ -2470,10 +2470,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this.dbProductData();
+              return _this.$store.dispatch('loadProductFormDb');
 
             case 2:
-              _this.products = _context.sent;
+              _this.products = _this.$store.getters.getAllProducts;
 
             case 3:
             case "end":
@@ -2483,31 +2483,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
-  methods: {
-    dbProductData: function dbProductData() {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var apiurl, getdata, result;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                apiurl = 'http://localhost:8000/api/v1/product';
-                _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default().get(apiurl);
-
-              case 3:
-                getdata = _context2.sent;
-                result = getdata.data;
-                return _context2.abrupt("return", result.data);
-
-              case 6:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    }
+  methods: {// async dbProductData(){
+    //     const apiurl = 'http://localhost:8000/api/v1/product';
+    //     const getdata = await Axios.get(apiurl);
+    //     const result = getdata.data;
+    // return result.data;
+    // },
   }
 });
 
@@ -3200,7 +3181,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 0:
               slug = _this.$route.params.slug;
               _context.next = 3;
-              return _this.getdatafromDB(slug);
+              return _this.$store.getters.getProductBySlug(slug);
 
             case 3:
               _this.product = _context.sent;
@@ -3213,31 +3194,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }, _callee);
     }))();
   },
-  methods: {
-    getdatafromDB: function getdatafromDB(slug) {
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var urlbyslug, response, result;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                urlbyslug = 'http://localhost:8000/api/v1/product/' + slug;
-                _context2.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get(urlbyslug);
-
-              case 3:
-                response = _context2.sent;
-                result = response.data.data;
-                return _context2.abrupt("return", result);
-
-              case 6:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    }
+  methods: {// async getdatafromDB(slug){
+    //     const urlbyslug = 'http://localhost:8000/api/v1/product/'+slug;
+    //     const response = await Axios.get(urlbyslug);
+    //     const result = response.data.data;
+    //     return result;
+    // }
   }
 });
 
@@ -26615,16 +26577,25 @@ var __webpack_exports__ = {};
   !*** ./resources/js/vue-app/main.js ***!
   \**************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App */ "./resources/js/vue-app/App.vue");
-/* harmony import */ var _pages_Homepage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pages/Homepage */ "./resources/js/vue-app/pages/Homepage.vue");
-/* harmony import */ var _pages_ProductPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/ProductPage */ "./resources/js/vue-app/pages/ProductPage.vue");
-/* harmony import */ var _pages_Chackout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Chackout */ "./resources/js/vue-app/pages/Chackout.vue");
-/* harmony import */ var _pages_CheckoutSuccess__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/CheckoutSuccess */ "./resources/js/vue-app/pages/CheckoutSuccess.vue");
-/* harmony import */ var _pages_CheckoutFailure__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/CheckoutFailure */ "./resources/js/vue-app/pages/CheckoutFailure.vue");
-/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App */ "./resources/js/vue-app/App.vue");
+/* harmony import */ var _pages_Homepage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/Homepage */ "./resources/js/vue-app/pages/Homepage.vue");
+/* harmony import */ var _pages_ProductPage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/ProductPage */ "./resources/js/vue-app/pages/ProductPage.vue");
+/* harmony import */ var _pages_Chackout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Chackout */ "./resources/js/vue-app/pages/Chackout.vue");
+/* harmony import */ var _pages_CheckoutSuccess__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/CheckoutSuccess */ "./resources/js/vue-app/pages/CheckoutSuccess.vue");
+/* harmony import */ var _pages_CheckoutFailure__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/CheckoutFailure */ "./resources/js/vue-app/pages/CheckoutFailure.vue");
+/* harmony import */ var vuelidate__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuelidate */ "./node_modules/vuelidate/lib/index.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
 
@@ -26635,17 +26606,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_6__.default.use(vuelidate__WEBPACK_IMPORTED_MODULE_7__.default);
-vue__WEBPACK_IMPORTED_MODULE_6__.default.use(vuex__WEBPACK_IMPORTED_MODULE_8__.default);
-vue__WEBPACK_IMPORTED_MODULE_6__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_9__.default);
+
+
+vue__WEBPACK_IMPORTED_MODULE_8__.default.use(vuelidate__WEBPACK_IMPORTED_MODULE_9__.default);
+vue__WEBPACK_IMPORTED_MODULE_8__.default.use(vuex__WEBPACK_IMPORTED_MODULE_10__.default);
+vue__WEBPACK_IMPORTED_MODULE_8__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_11__.default);
 var routes = [{
   'name': 'home-page',
   'path': '/',
-  'component': _pages_Homepage__WEBPACK_IMPORTED_MODULE_1__.default
+  'component': _pages_Homepage__WEBPACK_IMPORTED_MODULE_2__.default
 }, {
   'name': 'product-page',
   'path': '/product/:slug',
-  'component': _pages_ProductPage__WEBPACK_IMPORTED_MODULE_2__.default
+  'component': _pages_ProductPage__WEBPACK_IMPORTED_MODULE_3__.default
 }, {
   'name': 'chackout-page',
   'path': '/chackout',
@@ -26653,26 +26626,76 @@ var routes = [{
     product: null,
     quentity: null
   },
-  'component': _pages_Chackout__WEBPACK_IMPORTED_MODULE_3__.default
+  'component': _pages_Chackout__WEBPACK_IMPORTED_MODULE_4__.default
 }, {
   'name': 'checkout-success',
   'path': '/checkout/success',
-  'component': _pages_CheckoutSuccess__WEBPACK_IMPORTED_MODULE_4__.default
+  'component': _pages_CheckoutSuccess__WEBPACK_IMPORTED_MODULE_5__.default
 }, {
   'name': 'checkout-failure',
   'path': '/checkout/failure',
-  'component': _pages_CheckoutFailure__WEBPACK_IMPORTED_MODULE_5__.default
+  'component': _pages_CheckoutFailure__WEBPACK_IMPORTED_MODULE_6__.default
 }];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_9__.default({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_11__.default({
   mode: 'history',
   base: '/',
   fallback: true,
   routes: routes
 });
-new vue__WEBPACK_IMPORTED_MODULE_6__.default({
+var store = new vuex__WEBPACK_IMPORTED_MODULE_10__.default.Store({
+  state: {
+    products: []
+  },
+  mutations: {
+    SET_PRODUCTS: function SET_PRODUCTS(state, updatedProducts) {
+      state.products = updatedProducts;
+    }
+  },
+  actions: {
+    loadProductFormDb: function loadProductFormDb(_ref) {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var commit, DBurl, getAllProduct, result;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                commit = _ref.commit;
+                DBurl = 'http://localhost:8000/api/v1/product';
+                _context.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_7___default().get(DBurl);
+
+              case 4:
+                getAllProduct = _context.sent;
+                result = getAllProduct.data;
+                commit('SET_PRODUCTS', result);
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    }
+  },
+  getters: {
+    getAllProducts: function getAllProducts(state) {
+      return state.products.data;
+    },
+    getProductBySlug: function getProductBySlug(state) {
+      return function (slug) {
+        return state.products.data.find(function (item) {
+          return item.slug === slug;
+        });
+      };
+    }
+  }
+});
+new vue__WEBPACK_IMPORTED_MODULE_8__.default({
   router: router,
+  store: store,
   render: function render(h) {
-    return h(_App__WEBPACK_IMPORTED_MODULE_0__.default);
+    return h(_App__WEBPACK_IMPORTED_MODULE_1__.default);
   }
 }).$mount('#vueApp');
 })();

@@ -21,17 +21,19 @@ export default {
     },
     async created() {
 
-        this.products= await this.dbProductData();
+
+       await this.$store.dispatch('loadProductFormDb');
+       this.products= this.$store.getters.getAllProducts;
 
     },
     methods:{
-        async dbProductData(){
-            const apiurl = 'http://localhost:8000/api/v1/product';
-            const getdata = await Axios.get(apiurl);
-            const result = getdata.data;
+        // async dbProductData(){
+        //     const apiurl = 'http://localhost:8000/api/v1/product';
+        //     const getdata = await Axios.get(apiurl);
+        //     const result = getdata.data;
 
-        return result.data;
-        },
+        // return result.data;
+        // },
 
     }
 }

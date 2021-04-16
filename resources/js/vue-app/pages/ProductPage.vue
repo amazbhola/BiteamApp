@@ -656,16 +656,16 @@ export default {
     },
     async created() {
         const slug = this.$route.params.slug;
-        this.product = await this.getdatafromDB(slug);
+        this.product = await this.$store.getters.getProductBySlug(slug);
     },
     methods: {
-        async getdatafromDB(slug){
-            const urlbyslug = 'http://localhost:8000/api/v1/product/'+slug;
-            const response = await Axios.get(urlbyslug);
-            const result = response.data.data;
-            return result;
+        // async getdatafromDB(slug){
+        //     const urlbyslug = 'http://localhost:8000/api/v1/product/'+slug;
+        //     const response = await Axios.get(urlbyslug);
+        //     const result = response.data.data;
+        //     return result;
 
-        }
+        // }
     },
 }
 </script>

@@ -8,9 +8,10 @@ import CheckoutSuccess from './pages/CheckoutSuccess';
 import CheckoutFailure from './pages/CheckoutFailure';
 import Vuelidate from 'vuelidate';
 import Vuex from 'vuex';
+import axios from 'axios';
 
 Vue.use(Vuelidate);
-Vue.use(Vuex)
+Vue.use(Vuex);
 Vue.use(VueRouter);
 const routes = [
    {
@@ -53,7 +54,38 @@ const router = new VueRouter(
    );
 
 
+   const store = new Vuex.Store({
+    state: {
+        products: []
+    },
+    mutations: {
+        SET_PRODUCTS(state, updatedProducts){
+            state.products = updatedProducts
+        }
+     },
+    actions: {
+       async loadProductFormDb({commit}){
+            const DBurl = 'http://localhost:8000/api/v1/product';
+            const getAllProduct = await axios.get(DBurl);
+            const result= getAllProduct.data;
+            commit('SET_PRODUCTS', result)
+
+        }
+     },
+    getters: {
+        getAllProducts(state){
+            return state.products.data;
+        },
+        getProductBySlug(state){
+            return(slug)=>{
+                return state.products.data.find((item)=>item.slug === slug);
+            }
+        }
+    }
+  })
+
 new Vue({
    router,
+   store,
    render: h=>h(App)
 }).$mount('#vueApp');
