@@ -31,12 +31,12 @@
                                 <td>
                                     <img
                                         width="100"
-                                        :src="'/' + ChackoutProduct.image"
+                                        :src="'/' + CheckoutProduct.image"
                                         alt=""
                                     />
                                 </td>
                                 <td>
-                                    {{ ChackoutProduct.name }}<br />Carate :
+                                    {{ CheckoutProduct.name }}<br />Carate :
                                     22<br />Model : n/a
                                 </td>
                                 <td>-</td>
@@ -45,9 +45,9 @@
                                         ><span class="icon-ok"></span
                                     ></span>
                                 </td>
-                                <td>{{ ChackoutProduct.price }}</td>
+                                <td>{{ CheckoutProduct.price }}</td>
                                 <td>
-                                    {{ ChackoutQuantity }}
+                                    {{ CheckoutQuantity }}
                                 </td>
                                 <td>Tk: {{ getTotalPrice }}</td>
                             </tr>
@@ -231,8 +231,8 @@ import { required, email, minLength } from "vuelidate/lib/validators";
 export default {
     data() {
         return {
-            ChackoutProduct: null,
-            ChackoutQuantity: null,
+            CheckoutProduct: null,
+            CheckoutQuantity: null,
             formdata: {
                 customer_name: "",
                 customer_email: "",
@@ -242,18 +242,19 @@ export default {
         };
     },
     beforeMount() {
-        this.ChackoutProduct = this.$route.query.product;
-        this.ChackoutQuantity = parseInt(this.$route.query.quantity);
+        const CheckOutProduct = this.$store.getters.getProductForCheckout;
+        this.CheckoutProduct = CheckOutProduct.product;
+        this.CheckoutQuantity = parseInt(CheckOutProduct.buyQuantity);
     },
 
     computed: {
         getTotalPrice() {
             if (
-                this.ChackoutQuantity !== null &&
-                this.ChackoutProduct !== null
+                this.CheckoutQuantity !== null &&
+                this.CheckoutProduct !== null
             ) {
                 const total =
-                    this.ChackoutQuantity * this.ChackoutProduct.price;
+                    this.CheckoutQuantity * this.CheckoutProduct.price;
                 return total;
             } else {
                 return 0;
@@ -277,8 +278,8 @@ export default {
         },
         getOrderdata() {
             const OrderData = {
-                product_id: this.ChackoutProduct.id,
-                quantity: this.ChackoutQuantity,
+                product_id: this.CheckoutProduct.id,
+                quantity: this.CheckoutQuantity,
                 total: this.getTotalPrice,
                 shipping_address: this.formdata
             };

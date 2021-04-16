@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import App from './App';
 import HomePage from './pages/Homepage';
 import ProductPage from './pages/ProductPage';
-import ChackoutPage from './pages/Chackout';
+import CheckoutPage from './pages/Checkout';
 import CheckoutSuccess from './pages/CheckoutSuccess';
 import CheckoutFailure from './pages/CheckoutFailure';
 import Vuelidate from 'vuelidate';
@@ -25,13 +25,13 @@ const routes = [
       'component':ProductPage
    },
    {
-      'name':'chackout-page',
-      'path':'/chackout',
+      'name':'checkout-page',
+      'path':'/checkout',
       'params':{
           product:null,
           quentity:null
       },
-      'component':ChackoutPage
+      'component':CheckoutPage
    },
    {
       'name':'checkout-success',
@@ -56,11 +56,18 @@ const router = new VueRouter(
 
    const store = new Vuex.Store({
     state: {
-        products: []
+        products: [],
+        checkOut: {
+            CheckoutProduct: {},
+            CheckoutQuantity: null,
+        }
     },
     mutations: {
         SET_PRODUCTS(state, updatedProducts){
             state.products = updatedProducts
+        },
+        SET_CHECKOUT_PRODUCT(state,updateCheckoutProduct){
+            state.checkOut = updateCheckoutProduct
         }
      },
     actions: {
@@ -80,6 +87,9 @@ const router = new VueRouter(
             return(slug)=>{
                 return state.products.data.find((item)=>item.slug === slug);
             }
+        },
+        getProductForCheckout(state){
+            return state.checkOut;
         }
     }
   })

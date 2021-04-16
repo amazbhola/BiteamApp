@@ -71,8 +71,7 @@
                             <h4>100 items in stock</h4>
 
                             <p>
-                                <router-link class="shopBtn" :to="{name:'chackout-page', query:{'product':product,'quantity':buyQuantity}}" ><span class=" icon-shopping-cart"></span>
-                                    Buy Now</router-link>
+                                <button @click="buyNow" class=" shopBtn"><span class=" icon-shopping-cart"></span> Buh Now</button>
                             </p>
                         </div>
                     </div>
@@ -647,6 +646,7 @@
 </template>
 <script>
 import Axios from 'axios';
+import VueRouter from 'vue-router'
 export default {
     data(){
         return{
@@ -666,6 +666,14 @@ export default {
         //     return result;
 
         // }
+        buyNow(){
+            const checkoutData = {
+                product: this.product,
+                buyQuantity:this.buyQuantity
+            }
+            this.$store.commit('SET_CHECKOUT_PRODUCT',checkoutData)
+            this.$router.push({name:'checkout-page'})
+        }
     },
 }
 </script>
