@@ -70,9 +70,11 @@ class ProductApiController extends Controller
     public function store(Request $request)
     {
         $product_name = Product::find($request->product_id);
+
         try {
             Order::create([
                 'product_name'=>$product_name->name,
+                'image'=>$product_name->image,
                 'product_id' =>$request->product_id,
                 'quantity' => $request->quantity,
                 'total' =>$request->total,

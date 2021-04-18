@@ -281,6 +281,7 @@ export default {
                 product_id: this.CheckoutProduct.id,
                 quantity: this.CheckoutQuantity,
                 total: this.getTotalPrice,
+                image:this.image,
                 shipping_address: this.formdata
             };
             return OrderData;
